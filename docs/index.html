@@ -90,7 +90,8 @@ Make sure that you have the latest nbdev install</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>source Docker/docker_run.sh</code></p>
+
+<pre><code>source Docker/docker_run.sh</code></pre>
 
 </div>
 </div>
@@ -104,7 +105,8 @@ Make sure that you have the latest nbdev install</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>source install.sh</code></p>
+
+<pre><code>source install.sh</code></pre>
 
 </div>
 </div>
@@ -116,32 +118,40 @@ Make sure that you have the latest nbdev install</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Download</span> <span class="n">HANet</span> <span class="n">Datasets</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>2</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>source sample_datasets.sh</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run HANet inference</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>cd example
+python3 inference.py</code></pre>
+
+</div>
+</div>
+</div>
 </div>
  
 

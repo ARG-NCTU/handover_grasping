@@ -40,19 +40,27 @@ Run nbdev_build_docs to generate documentations in /docs
 
 Run docker
 
-`source Docker/docker_run.sh`
+```
+source Docker/docker_run.sh
+```
 
 Install module
 
-`source install.sh`
-
-```python
-1+1
+```
+source install.sh
 ```
 
+```python
+Download HANet Datasets
+```
 
+```
+source sample_datasets.sh
+```
 
+Run HANet inference
 
-    2
-
-
+```
+cd example
+python3 inference.py
+```
