@@ -8,7 +8,8 @@ index = {"Card": "00_core.ipynb",
          "image_net_std": "Dataloader.ipynb",
          "HANet": "model.ipynb",
          "get_grasp_line": "utils.ipynb",
-         "get_affordancemap": "utils.ipynb"}
+         "get_affordancemap": "utils.ipynb",
+         "get_model": "utils.ipynb"}
 
 modules = ["core.py",
            "Dataloader.py",
