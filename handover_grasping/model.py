@@ -51,7 +51,7 @@ class HANet(nn.Module):
             self.net.load_state_dict(torch.load(model_path))
             print('Load pretrained complete')
         else:
-            self.net = self.HANet_model(n_classes=n_class)
+            self.net = self.FCN_model(n_classes=n_class)
 
     def forward(self, Color, Depth):
         output = self.net(Color, Depth)
