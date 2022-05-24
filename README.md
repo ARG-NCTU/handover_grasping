@@ -29,12 +29,8 @@ nbdev_build_lib
 
 Run nbdev_build_docs to generate documentations in /docs
 ```
-
+nbdev_build_docs
 ```
-
-## Install
-
-`pip install handover_grasping`
 
 ## How to use
 
@@ -44,15 +40,13 @@ Run docker
 source Docker/docker_run.sh
 ```
 
-Install module
+Install
 
 ```
 source install.sh
 ```
 
-```python
 Download HANet Datasets
-```
 
 ```
 source sample_datasets.sh
