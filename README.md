@@ -37,7 +37,7 @@ nbdev_build_docs
 Run docker
 
 ```
-source Docker/docker_run.sh
+$ source Docker/docker_run.sh
 ```
 
 Install
@@ -49,12 +49,12 @@ source install.sh
 Download HANet Datasets
 
 ```
-source sample_datasets.sh
+$ source sample_datasets.sh
 ```
 
 Run HANet inference
 
 ```
-cd example
-python3 inference.py
+$ cd example
+$ python3 inference.py
 ```
