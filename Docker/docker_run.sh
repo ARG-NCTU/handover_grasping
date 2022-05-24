@@ -53,7 +53,6 @@ docker run \
     -v "/etc/localtime:/etc/localtime:ro" \
     -v "/dev:/dev" \
     -v "/var/run/docker.sock:/var/run/docker.sock" \
-    -v "/home/$USER/.bashrc:/home/arg/.bashrc" \
     -v "/home/$USER/handover_grasping:/home/arg/handover_grasping" \
     -w "/home/arg/handover_grasping" \
     --name argmm \
