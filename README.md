@@ -38,7 +38,13 @@ Run nbdev_build_docs to generate documentations in /docs
 
 ## How to use
 
-Fill me in please! Don't forget code examples:
+Run docker
+
+`source Docker/docker_run.sh`
+
+Install module
+
+`source install.sh`
 
 ```python
 1+1
