@@ -79,8 +79,8 @@ class handover_grasping_dataset(Dataset):
 
 
         if self.mode == 'train':
-            sample = {"color": color_tensor, "depth": depth_tensor, "label": label_tensor, "id": 0, "origin_color": color_origin, "depth_origin": depth_origin}
+            sample = {"color": color_tensor, "depth": depth_tensor, "label": label_tensor, "id": 0, "color_origin": color_origin, "depth_origin": depth_origin}
         else:
-            sample = {"color": color_tensor, "depth": depth_tensor, "origin_color": color_origin, "depth_origin": depth_origin}
+            sample = {"color": color_tensor, "depth": depth_tensor, "color_origin": color_origin, "depth_origin": depth_origin}
 
         return sample
