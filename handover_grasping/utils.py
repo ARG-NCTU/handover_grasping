@@ -18,10 +18,10 @@ def get_grasp_line(theta, center, depth):
       depth: depth image (mm)
     """
     depth = depth/1000.0
-    if depth[center[1], center[0]] < 0.1:
+    if depth[center[0], center[1]] < 0.1:
         dis = 0.356 - 0.199
     else:
-        dis = depth[center[1], center[0]] - 0.199
+        dis = depth[center[0], center[1]] - 0.199
 
     length = int((148 - int(dis*50.955))/2)
 
@@ -65,6 +65,7 @@ def get_affordancemap(predict, depth):
     theta = Angle[Max.index(max(Max))]
     graspable = re[Max.index(max(Max))]
     graspable = cv2.resize(graspable, (640, 480))
+    depth = cv2.resize(depth, (640, 480))
     graspable [depth==0] = 0
     graspable[graspable>=1] = 0.99999
     graspable[graspable<0] = 0
