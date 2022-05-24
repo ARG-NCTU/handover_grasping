@@ -2,9 +2,18 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"Card": "00_core.ipynb"}
+index = {"Card": "00_core.ipynb",
+         "handover_grasping_dataset": "Dataloader.ipynb",
+         "image_net_mean": "Dataloader.ipynb",
+         "image_net_std": "Dataloader.ipynb",
+         "HANet": "model.ipynb",
+         "get_grasp_line": "utils.ipynb",
+         "get_affordancemap": "utils.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "Dataloader.py",
+           "model.py",
+           "utils.py"]
 
 doc_url = "https://ARG-NCTU.github.io/handover_grasping/"
 
