@@ -33,7 +33,7 @@ class handover_grasping_dataset(Dataset):
         return len(self.name)
     def __getitem__(self, idx):
         idx_name = self.name[idx]
-        color_img = cv2.imread(self.data_dir+"/color/color_"+idx_name+'.jpg')
+        color_img = cv2.imread(self.data_dir+"/color/color_"+idx_name+'.png')
         color_img = color_img[:,:,[2,1,0]]
         color_img = cv2.resize(color_img,(224,224))
         color_origin = cv2.resize(color_img,(640,480))
