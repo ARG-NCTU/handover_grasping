@@ -10,7 +10,7 @@ Jupyter Notebook Environment was setup in Anaconda.
 The Anaconda's default nbdev version is 0.2.40
 Make sure that you have the latest nbdev install
 ```
-pip3 install -U nbdev
+$ pip3 install -U nbdev
 ```
 
 Also be careful about the settings.ini.
@@ -24,12 +24,12 @@ You should not modify README.md directly. Do it in index.ipynb
 
 Run nbdev_build_lib to convert *.ipynb to *.py
 ```
-nbdev_build_lib
+$ nbdev_build_lib
 ```
 
 Run nbdev_build_docs to generate documentations in /docs
 ```
-nbdev_build_docs
+$ nbdev_build_docs
 ```
 
 ## How to use
@@ -43,7 +43,7 @@ $ source Docker/docker_run.sh
 Install
 
 ```
-source install.sh
+$ source install.sh
 ```
 
 Download HANet Datasets
