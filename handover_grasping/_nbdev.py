@@ -2,30 +2,30 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"Card": "00_core.ipynb",
-         "handover_grasping_dataset": "Dataloader.ipynb",
-         "image_net_mean": "Dataloader.ipynb",
-         "image_net_std": "Dataloader.ipynb",
-         "bwareaopen": "getheightmap.ipynb",
-         "bg_subtraction": "getheightmap.ipynb",
-         "project_depth2camera": "getheightmap.ipynb",
-         "points2world": "getheightmap.ipynb",
-         "getgridmapping": "getheightmap.ipynb",
-         "getheightmapColor": "getheightmap.ipynb",
-         "heightmapwithbgsubtraction": "getheightmap.ipynb",
-         "FixMissingDepth2camera": "getheightmap.ipynb",
-         "getMissingdepthheightmap": "getheightmap.ipynb",
-         "denoiseheightmap": "getheightmap.ipynb",
-         "HANet": "model.ipynb",
-         "get_grasp_line": "utils.ipynb",
-         "get_affordancemap": "utils.ipynb",
-         "get_model": "utils.ipynb"}
+index = {"handover_grasping_dataset": "00_Dataloader.ipynb",
+         "image_net_mean": "00_Dataloader.ipynb",
+         "image_net_std": "00_Dataloader.ipynb",
+         "Card": "00_core.ipynb",
+         "HANet": "01_model.ipynb",
+         "get_grasp_line": "02_utils.ipynb",
+         "get_affordancemap": "02_utils.ipynb",
+         "get_model": "02_utils.ipynb",
+         "bwareaopen": "03_getheightmap.ipynb",
+         "bg_subtraction": "03_getheightmap.ipynb",
+         "project_depth2camera": "03_getheightmap.ipynb",
+         "points2world": "03_getheightmap.ipynb",
+         "getgridmapping": "03_getheightmap.ipynb",
+         "getheightmapColor": "03_getheightmap.ipynb",
+         "heightmapwithbgsubtraction": "03_getheightmap.ipynb",
+         "FixMissingDepth2camera": "03_getheightmap.ipynb",
+         "getMissingdepthheightmap": "03_getheightmap.ipynb",
+         "denoiseheightmap": "03_getheightmap.ipynb"}
 
-modules = ["core.py",
-           "Dataloader.py",
-           "getheightmap.py",
+modules = ["Dataloader.py",
+           "core.py",
            "model.py",
-           "utils.py"]
+           "utils.py",
+           "getheightmap.py"]
 
 doc_url = "https://ARG-NCTU.github.io/handover_grasping/"
 
