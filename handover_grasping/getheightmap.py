@@ -28,45 +28,23 @@ def bwareaopen(image, sz):
 
 def bg_subtraction(colorIMg, bgColorImg, depthImg, bgDepthImg):
     tmp = abs(colorIMg - bgColorImg)
-    for i in range(tmp.shape[0]):
-        for j in range(tmp.shape[1]):
-            for k in range(3):
-                if tmp[i,j,k] < 0.3:
-                    tmp[i,j,k] = 1
-                else:
-                    tmp[i,j,k] = 0
+    tmp[tmp<0.3] == 1
 
     fgMaskColor = np.sum(tmp,2)
     fgMaskColor[fgMaskColor!=3] = 1
     fgMaskColor[fgMaskColor==3] = 0
 
     tmp = abs(depthImg-bgDepthImg)
-    for i in range(tmp.shape[0]):
-        for j in range(tmp.shape[1]):
-            if tmp[i,j] > 0.02:
-                tmp[i,j] = 1
-            else:
-                tmp[i,j] = 0
-            if bgDepthImg[i,j] == 0:
-                bgDepthImg[i,j] = 0
-            else:
-                bgDepthImg[i,j] = 1
+    tmp[tmp>0.02] = 1
+    tmp[tmp!=1] = 0
+
+    bgDepthImg[bgDepthImg!=0] = 1
 
     fgMaskDepth = np.zeros(bgDepthImg.shape)
-    for i in range(fgMaskDepth.shape[0]):
-        for j in range(fgMaskDepth.shape[1]):
-            if tmp[i,j] == 1 and bgDepthImg[i,j] == 1:
-                fgMaskDepth[i,j] = 1
-            else:
-                fgMaskDepth[i,j] = 0
+    fgMaskDepth[((tmp == 1) & (bgDepthImg == 1))] = 1
 
-    fgMask = np.zeros(bgDepthImg.shape)
-    for i in range(fgMaskDepth.shape[0]):
-        for j in range(fgMaskDepth.shape[1]):
-            if fgMaskDepth[i,j] == 0 and fgMaskColor[i,j] == 0:
-                fgMask[i,j] = 0
-            else:
-                fgMask[i,j] = 1
+    fgMask = np.ones(bgDepthImg.shape)
+    fgMask[((fgMaskDepth == 0) & (fgMaskColor == 0))] = 0
 
     return fgMaskColor, fgMask
 
@@ -104,51 +82,39 @@ def getgridmapping(worldPts, binMiddleBottom):
 def getheightmapColor(gridMapping, colorIMg):
     heightMap = np.zeros((200,300))
     heightMapColor = np.zeros((200*300,3))
-    tmp0 = np.zeros(gridMapping[:,0].shape)
-    for i in range(tmp0.shape[0]):
-        if gridMapping[i,0] > 0:
-            tmp0[i] = 1
 
-    tmp1 = np.zeros(gridMapping[:,0].shape)
-    for i in range(tmp1.shape[0]):
-        if gridMapping[i,0] <= 300:
-            tmp1[i] = 1
+    Tmp0 = np.zeros(gridMapping[:,0].shape)
+    Tmp0[gridMapping[:,0]>0] = 1
 
-    tmp2 = np.zeros(gridMapping[:,1].shape)
-    for i in range(tmp2.shape[0]):
-        if gridMapping[i,1] > 0:
-            tmp2[i] = 1
+    Tmp1 = np.zeros(gridMapping[:,0].shape)
+    Tmp1[gridMapping[:,0]<= 300] = 1
 
-    tmp3 = np.zeros(gridMapping[:,1].shape)
-    for i in range(tmp3.shape[0]):
-        if gridMapping[i,1] <=200:
-            tmp3[i] = 1
+    Tmp2 = np.zeros(gridMapping[:,1].shape)
+    Tmp2[gridMapping[:,1] > 0] = 1
 
-    validPix = np.zeros(gridMapping[:,0].shape)
-    for i in range(validPix.shape[0]):
-        if tmp0[i] == 1 and tmp1[i] == 1 and tmp2[i] == 1 and tmp3[i] == 1:
-            validPix[i] = 1
+    Tmp3 = np.zeros(gridMapping[:,1].shape)
+    Tmp3[gridMapping[:,1]<=200] = 1
 
     colorPts = np.array([colorIMg[:,:,0].flatten('F'), colorIMg[:,:,1].flatten('F'), colorIMg[:,:,2].flatten('F')]).transpose()
+    validPix = np.zeros(gridMapping[:,0].shape)
 
     tmp = []
     tmp2 = []
+    tmp3 = [[],[],[]]
+
     for i in range(validPix.shape[0]):
-        if validPix[i] == 1:
+        if Tmp0[i] == 1 and Tmp1[i] == 1 and Tmp2[i] == 1 and Tmp3[i] == 1:
+            validPix[i] = 1
             tmp.append(int(gridMapping[i,1])-1)
             tmp2.append(int(gridMapping[i,0])-1)
-
+            tmp3[0].append(colorPts[i,0])
+            tmp3[1].append(colorPts[i,1])
+            tmp3[2].append(colorPts[i,2])
 
     tmp = np.array(tmp)
     tmp2 = np.array(tmp2)
     arr = np.array([tmp, tmp2])
     s = np.ravel_multi_index(arr, (200,300), order='F')
-    tmp3 = [[],[],[]]
-    for i in range(validPix.shape[0]):
-        if validPix[i] == 1:
-            tmp3[0].append(colorPts[i,0])
-            tmp3[1].append(colorPts[i,1])
-            tmp3[2].append(colorPts[i,2])
     tmp3 = np.array(tmp3).transpose()
 
     for i in range(s.shape[0]):
@@ -159,40 +125,25 @@ def getheightmapColor(gridMapping, colorIMg):
 def heightmapwithbgsubtraction(gridMapping, fgMask, depthImg):
     heightMap = np.zeros((200,300))
     tmp0 = np.zeros(gridMapping[:,0].shape)
-    for i in range(tmp0.shape[0]):
-        if gridMapping[i,0] > 0:
-            tmp0[i] = 1
+    tmp0[gridMapping[:,0]>0] = 1
 
     tmp1 = np.zeros(gridMapping[:,0].shape)
-    for i in range(tmp1.shape[0]):
-        if gridMapping[i,0] <= 300:
-            tmp1[i] = 1
+    tmp1[gridMapping[:,0]<=300] = 1
 
     tmp2 = np.zeros(gridMapping[:,1].shape)
-    for i in range(tmp2.shape[0]):
-        if gridMapping[i,1] > 0:
-            tmp2[i] = 1
+    tmp2[gridMapping[:,1]>0] = 1
 
     tmp3 = np.zeros(gridMapping[:,1].shape)
-    for i in range(tmp3.shape[0]):
-        if gridMapping[i,1] <=200:
-            tmp3[i] = 1
+    tmp3[gridMapping[:,1]<=200] = 1
 
     tmp4 = np.zeros(gridMapping[:,2].shape)
-    for i in range(tmp4.shape[0]):
-        if gridMapping[i,2] > 0:
-            tmp4[i] = 1
+    tmp4[gridMapping[:,2]>0] = 1
 
     validPix = np.zeros(gridMapping[:,0].shape)
-    for i in range(validPix.shape[0]):
-        if tmp0[i] == 1 and tmp1[i] == 1 and tmp2[i] == 1 and tmp3[i] == 1 and tmp4[i] == 1:
-            validPix[i] = 1
+    validPix[((tmp0 == 1) & (tmp1 == 1) & (tmp2 == 1) & (tmp3 == 1) & (tmp4 == 1))] = 1
 
     validDepth = np.zeros(fgMask.shape)
-    for i in range(validDepth.shape[0]):
-        for j in range(validDepth.shape[1]):
-            if fgMask[i,j] != 0 and depthImg[i,j]!= 0:
-                validDepth[i,j] = 1
+    validDepth[((fgMask != 0) & (depthImg != 0))] = 1
 
     tmp = validDepth.flatten('F')
     tmp3 = [[],[],[]]
@@ -225,10 +176,7 @@ def heightmapwithbgsubtraction(gridMapping, fgMask, depthImg):
 
 def FixMissingDepth2camera(depthImg, bgDepthImg, camIntrinsics, camPose):
     missingDepth = np.zeros(depthImg.shape)
-    for i in range(missingDepth.shape[0]):
-        for j in range(missingDepth.shape[1]):
-            if depthImg[i,j] == 0 and bgDepthImg[i,j] > 0:
-                missingDepth[i,j] = 1
+    missingDepth[((depthImg) == 0 & (bgDepthImg > 0))] = 1
 
     xvalues = np.linspace(1,640,640)
     yvalues = np.linspace(1,480,480)
