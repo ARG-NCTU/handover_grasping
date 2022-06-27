@@ -93,10 +93,9 @@ def get_affordancemap(predict, depth):
             cX = int(M["m10"] / M["m00"])
             cY = int(M["m01"] / M["m00"])
             zc = depth[cY, cX]/1000
-            if 0 < zc < 0.65:
-                i += 1
-                point_x += cX
-                point_y += cY
+            i += 1
+            point_x += cX
+            point_y += cY
 
     if i != 0:
         x = int(point_x / i)
