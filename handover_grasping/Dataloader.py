@@ -37,8 +37,8 @@ class handover_grasping_dataset(Dataset):
         color_img = color_img[:,:,[2,1,0]]
         color_img = cv2.resize(color_img,(224,224))
         color_origin = cv2.resize(color_img,(640,480))
-        depth_img = np.load(self.data_dir+"/depth/depth_"+idx_name+'.npy')
-        depth_origin = np.load(self.data_dir+"/depth/depth_"+idx_name+'.npy').astype(float)
+        depth_img = np.load(self.data_dir+"/depth_npy/depth_"+idx_name+'.npy')
+        depth_origin = np.load(self.data_dir+"/depth_npy/depth_"+idx_name+'.npy').astype(float)
         if depth_origin.shape[0] == 224:
             depth_origin = cv2.resize(depth_origin,(640,480))
         depth_img = cv2.resize(depth_img,(224,224))
