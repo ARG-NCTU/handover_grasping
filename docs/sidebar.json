@@ -2,6 +2,7 @@
   "handover_grasping": {
     "Overview": "/",
     "Title": "inference.html",
-    "module name here": "core.html"
+    "module name here": "core.html",
+    "Merge two pointclouds by Open3d": "utils.html"
   }
 }
