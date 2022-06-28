@@ -11,7 +11,7 @@ fi
 cd $cwd/data
 
 # HANet_sample_datasets
-echo "111111" | sudo -S gdown --id 1eF4i0yrxpTl9fV_UEzRoqNRNXHBjdWcA
+echo "111111" | sudo -S gdown --id 1QEgHIFTS9L7Qo7TWBjhG_DCq3CLhENFl
 unzip -qq HANet_sample_datasets.zip
 rm -f HANet_sample_datasets.zip
 

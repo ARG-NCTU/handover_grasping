@@ -16,9 +16,11 @@ class handover_grasping_dataset(Dataset):
     """Dataloader of handover datasets.
     """
     name = []
-    def __init__(self, data_dir, mode='train'):
+    def __init__(self, data_dir, mode='train', color_type='jpg', depth_type='npy'):
         self.data_dir = data_dir
         self.mode = mode
+        self.color_t = color_type
+        self.depth_t = depth_type
         self.transform = transforms.Compose([
                         transforms.ToTensor(),
                     ])
@@ -33,14 +35,29 @@ class handover_grasping_dataset(Dataset):
         return len(self.name)
     def __getitem__(self, idx):
         idx_name = self.name[idx]
-        color_img = cv2.imread(self.data_dir+"/color/color_"+idx_name+'.png')
+        if self.color_t == 'jpg':
+            color_img = cv2.imread(self.data_dir+"/color/color_"+idx_name+'.jpg')
+        else:
+            color_img = cv2.imread(self.data_dir+"/color/color_"+idx_name+'.png')
         color_img = color_img[:,:,[2,1,0]]
         color_img = cv2.resize(color_img,(224,224))
         color_origin = cv2.resize(color_img,(640,480))
-        depth_img = np.load(self.data_dir+"/depth_npy/depth_"+idx_name+'.npy')
-        depth_origin = np.load(self.data_dir+"/depth_npy/depth_"+idx_name+'.npy').astype(float)
+        if self.depth_t == 'npy':
+            depth_img = np.load(self.data_dir+"/depth_npy/depth_"+idx_name+'.npy')
+            depth_origin = np.load(self.data_dir+"/depth_npy/depth_"+idx_name+'.npy').astype(float)
+        elif self.depth_t == 'png':
+            depth_img = cv2.imread(self.data_dir+"/depth/depth_"+idx_name+'.png', -1)
+            depth_origin = cv2.imread(self.data_dir+"/depth/depth_"+idx_name+'.png', -1).astype(float)
+        elif self.depth_t == 'jpg':
+            depth_img = cv2.imread(self.data_dir+"/depth/depth_"+idx_name+'.jpg', -1)
+            depth_origin = cv2.imread(self.data_dir+"/depth/depth_"+idx_name+'.jpg', -1).astype(float)
+        if self.depth_t != 'npy':
+            depth_img = depth_img[:,:,0]
+            depth_origin = depth_origin[:,:,0]
+
         if depth_origin.shape[0] == 224:
             depth_origin = cv2.resize(depth_origin,(640,480))
+
         depth_img = cv2.resize(depth_img,(224,224))
 
         if self.mode == 'train':
