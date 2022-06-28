@@ -54,6 +54,7 @@ docker run \
     -v "/dev:/dev" \
     -v "/var/run/docker.sock:/var/run/docker.sock" \
     -v "/home/$USER/handover_grasping:/home/arg/handover_grasping" \
+    -v "/home/$USER/arg_tools:/home/arg/arg_tools" \
     -w "/home/arg/handover_grasping" \
     --name argmm \
     --network host \
