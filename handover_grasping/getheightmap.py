@@ -2,12 +2,15 @@
 
 __all__ = ['bwareaopen', 'bg_subtraction', 'project_depth2camera', 'points2world', 'getgridmapping',
            'getheightmapColor', 'heightmapwithbgsubtraction', 'FixMissingDepth2camera', 'getMissingdepthheightmap',
-           'denoiseheightmap']
+           'denoiseheightmap', 'grid_x', 'grid_y']
 
 # Cell
 import cv2
 import numpy as np
 import imageio
+
+grid_x = 200
+grid_y = 300
 
 def bwareaopen(image, sz):
     output = image.copy()
@@ -80,20 +83,20 @@ def getgridmapping(worldPts, binMiddleBottom):
     return gridMapping
 
 def getheightmapColor(gridMapping, colorIMg):
-    heightMap = np.zeros((200,300))
-    heightMapColor = np.zeros((200*300,3))
+    heightMap = np.zeros((grid_x,grid_y))
+    heightMapColor = np.zeros((grid_x*grid_y,3))
 
     Tmp0 = np.zeros(gridMapping[:,0].shape)
     Tmp0[gridMapping[:,0]>0] = 1
 
     Tmp1 = np.zeros(gridMapping[:,0].shape)
-    Tmp1[gridMapping[:,0]<= 300] = 1
+    Tmp1[gridMapping[:,0]<= grid_y] = 1
 
     Tmp2 = np.zeros(gridMapping[:,1].shape)
     Tmp2[gridMapping[:,1] > 0] = 1
 
     Tmp3 = np.zeros(gridMapping[:,1].shape)
-    Tmp3[gridMapping[:,1]<=200] = 1
+    Tmp3[gridMapping[:,1]<=grid_x] = 1
 
     colorPts = np.array([colorIMg[:,:,0].flatten('F'), colorIMg[:,:,1].flatten('F'), colorIMg[:,:,2].flatten('F')]).transpose()
     validPix = np.zeros(gridMapping[:,0].shape)
@@ -114,7 +117,7 @@ def getheightmapColor(gridMapping, colorIMg):
     tmp = np.array(tmp)
     tmp2 = np.array(tmp2)
     arr = np.array([tmp, tmp2])
-    s = np.ravel_multi_index(arr, (200,300), order='F')
+    s = np.ravel_multi_index(arr, (grid_x,grid_y), order='F')
     tmp3 = np.array(tmp3).transpose()
 
     for i in range(s.shape[0]):
@@ -123,21 +126,22 @@ def getheightmapColor(gridMapping, colorIMg):
     return heightMapColor
 
 def heightmapwithbgsubtraction(gridMapping, fgMask, depthImg):
-    heightMap = np.zeros((200,300))
+    heightMap = np.zeros((grid_x,grid_y))
     tmp0 = np.zeros(gridMapping[:,0].shape)
     tmp0[gridMapping[:,0]>0] = 1
 
     tmp1 = np.zeros(gridMapping[:,0].shape)
-    tmp1[gridMapping[:,0]<=300] = 1
+    tmp1[gridMapping[:,0]<=grid_y] = 1
 
     tmp2 = np.zeros(gridMapping[:,1].shape)
     tmp2[gridMapping[:,1]>0] = 1
 
     tmp3 = np.zeros(gridMapping[:,1].shape)
-    tmp3[gridMapping[:,1]<=200] = 1
+    tmp3[gridMapping[:,1]<=grid_x] = 1
 
     tmp4 = np.zeros(gridMapping[:,2].shape)
     tmp4[gridMapping[:,2]>0] = 1
+
 
     validPix = np.zeros(gridMapping[:,0].shape)
     validPix[((tmp0 == 1) & (tmp1 == 1) & (tmp2 == 1) & (tmp3 == 1) & (tmp4 == 1))] = 1
@@ -163,13 +167,13 @@ def heightmapwithbgsubtraction(gridMapping, fgMask, depthImg):
     tmp = np.array(tmp)
     tmp2 = np.array(tmp2)
     arr = np.array([tmp, tmp2])
-    s = np.ravel_multi_index(arr, (200,300), order='F')
+    s = np.ravel_multi_index(arr, (grid_x,grid_y), order='F')
     tmp3 = []
     for i in range(gridMapping[:,2].shape[0]):
         tmp3.append(gridMapping[:,2][i])
 
     for i in range(s.shape[0]):
-        coord = np.unravel_index(s[i], (200,300), order='F')
+        coord = np.unravel_index(s[i], (grid_x,grid_y), order='F')
         heightMap[coord[0],coord[1]] = tmp3[i]
 
     return heightMap
@@ -205,7 +209,7 @@ def FixMissingDepth2camera(depthImg, bgDepthImg, camIntrinsics, camPose):
 
 def getMissingdepthheightmap(binMiddleBottom, missingCamPtsworldPts):
     voxelSize = 0.002
-    missingHeightMap = np.zeros((200,300))
+    missingHeightMap = np.zeros((grid_x,grid_y))
     gridOrigin = [binMiddleBottom[0][0]-0.3,binMiddleBottom[0][1]-0.2,binMiddleBottom[0][2]]
     gridMapping_1 = np.around((missingCamPtsworldPts[:,0] - gridOrigin[0])/voxelSize)
     gridMapping_2 = np.around((missingCamPtsworldPts[:,1] - gridOrigin[1])/voxelSize)
@@ -219,7 +223,7 @@ def getMissingdepthheightmap(binMiddleBottom, missingCamPtsworldPts):
 
     tmp1 = np.zeros(gridMapping[:,0].shape)
     for i in range(tmp1.shape[0]):
-        if gridMapping[i,0] <= 300:
+        if gridMapping[i,0] <= grid_y:
             tmp1[i] = 1
 
     tmp2 = np.zeros(gridMapping[:,1].shape)
@@ -229,7 +233,7 @@ def getMissingdepthheightmap(binMiddleBottom, missingCamPtsworldPts):
 
     tmp3 = np.zeros(gridMapping[:,1].shape)
     for i in range(tmp3.shape[0]):
-        if gridMapping[i,1] <=200:
+        if gridMapping[i,1] <=grid_x:
             tmp3[i] = 1
 
     tmp = [[],[],[]]
@@ -252,13 +256,13 @@ def getMissingdepthheightmap(binMiddleBottom, missingCamPtsworldPts):
     tmp = np.array(tmp)
     tmp2 = np.array(tmp2)
     arr = np.array([tmp, tmp2])
-    s = np.ravel_multi_index(arr, (200,300), order='F')
+    s = np.ravel_multi_index(arr, (grid_x,grid_y), order='F')
     tmp3 = []
     for i in range(gridMapping[:,2].shape[0]):
         tmp3.append(gridMapping[:,2][i])
 
     for i in range(s.shape[0]):
-        coord = np.unravel_index(s[i], (200,300), order='F')
+        coord = np.unravel_index(s[i], (grid_x,grid_y), order='F')
         missingHeightMap[coord[0],coord[1]] = 1
 
 
