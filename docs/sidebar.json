@@ -1,7 +1,7 @@
 {
   "handover_grasping": {
     "Overview": "/",
-    "module name here": "core.html",
-    "Title": "utils.html"
+    "Title": "inference.html",
+    "module name here": "core.html"
   }
 }

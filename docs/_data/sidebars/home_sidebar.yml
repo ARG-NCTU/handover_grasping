@@ -10,11 +10,11 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
+      title: Title
+      url: inference.html
+    - output: web,pdf
       title: module name here
       url: core.html
-    - output: web,pdf
-      title: Title
-      url: utils.html
     output: web
     title: handover_grasping
   output: web
