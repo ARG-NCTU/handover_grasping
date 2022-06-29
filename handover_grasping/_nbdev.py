@@ -2,9 +2,8 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"handover_grasping_dataset": "00_Dataloader.ipynb",
-         "image_net_mean": "00_Dataloader.ipynb",
-         "image_net_std": "00_Dataloader.ipynb",
+index = {"handover_grasping_dataset": "00_Datavisualizer.ipynb",
+         "rosenberger_dataloader": "00_Datavisualizer.ipynb",
          "Card": "00_core.ipynb",
          "HANet": "01_model.ipynb",
          "get_grasp_line": "02_utils.ipynb",
@@ -27,7 +26,7 @@ index = {"handover_grasping_dataset": "00_Dataloader.ipynb",
          "grid_x": "03_getheightmap.ipynb",
          "grid_y": "03_getheightmap.ipynb"}
 
-modules = ["Dataloader.py",
+modules = ["Datavisualizer.py",
            "core.py",
            "model.py",
            "utils.py",
