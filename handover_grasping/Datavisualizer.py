@@ -80,7 +80,7 @@ class handover_grasping_dataset(Dataset):
         # BGR -> RGB and normalize
         color_rgb = np.zeros(color.shape)
         for i in range(3):
-            color_rgb[:, :, i] = (color[:, :, 2-i]-image_net_mean[i])/image_net_std[i]
+            color_rgb[:, :, i] = (color[:, :, 2-i]-self.image_net_mean[i])/self.image_net_std[i]
 
         depth_img = np.round((depth_img/np.max(depth_img))*255).astype('int').reshape(1,depth_img.shape[0],depth_img.shape[1])
         depth = (depth_img/1000.).astype(float) # to meters
@@ -139,7 +139,8 @@ class rosenberger_dataloader():
         color = cv2.imread(self.data_path+'/color/color_'+idx+'.'+self.color_t)
 
         if self.depth_t == 'npy':
-            depth = np.load(self.data_path+'/depth/depth_'+idx+'.npy')
+            depth = np.load(self.data_path+'/depth_npy/depth_'+idx+'.npy')
+            depth = depth/1000.0
         else:
             depth = cv2.imread(self.data_path+'/depth/depth_'+idx+'.png',-1)
             depth = depth[:,:,0]/1000.0
