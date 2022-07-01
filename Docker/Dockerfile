@@ -80,6 +80,7 @@ RUN pip3 install \
     scikit-learn \
     nbdev \
     open3d==0.13.0 \
+    tensorflow \
     gdown 
 
 RUN pip3 install \
