@@ -50,6 +50,7 @@ wheels/
 *.jpg
 *.npy
 *.png
+*.mp4
 
 # Installer logs
 pip-log.txt
