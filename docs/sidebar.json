@@ -1,9 +1,10 @@
 {
   "handover_grasping": {
     "Overview": "/",
-    "Title": "inference.html",
+    "Title": "getheightmap.html",
     "module name here": "core.html",
     "Inference": "model.html",
-    "Merge two pointclouds by Open3d": "utils.html"
+    "Merge two pointclouds by Open3d": "utils.html",
+    "HANet Training": "train.html"
   }
 }

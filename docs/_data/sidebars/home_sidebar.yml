@@ -11,7 +11,7 @@ entries:
       url: /
     - output: web,pdf
       title: Title
-      url: inference.html
+      url: getheightmap.html
     - output: web,pdf
       title: module name here
       url: core.html
@@ -21,6 +21,9 @@ entries:
     - output: web,pdf
       title: Merge two pointclouds by Open3d
       url: utils.html
+    - output: web,pdf
+      title: HANet Training
+      url: train.html
     output: web
     title: handover_grasping
   output: web

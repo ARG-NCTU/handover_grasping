@@ -1,6 +1,6 @@
 ---
 
-title: Title
+title: HANet Training
 
 
 keywords: fastai
@@ -71,8 +71,7 @@ nb_path: "04_train.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>DataLoader and parameters</p>
-
+<h2 id="DataLoader-and-parameters">DataLoader and parameters<a class="anchor-link" href="#DataLoader-and-parameters"> </a></h2>
 </div>
 </div>
 </div>
@@ -101,8 +100,7 @@ nb_path: "04_train.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Initial HANet</p>
-
+<h2 id="Initial-HANet">Initial HANet<a class="anchor-link" href="#Initial-HANet"> </a></h2>
 </div>
 </div>
 </div>
@@ -140,8 +138,7 @@ nb_path: "04_train.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Loss function and optimizer</p>
-
+<h2 id="Loss-function-and-optimizer">Loss function and optimizer<a class="anchor-link" href="#Loss-function-and-optimizer"> </a></h2>
 </div>
 </div>
 </div>
@@ -167,8 +164,7 @@ nb_path: "04_train.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Start Training</p>
-
+<h2 id="Start-Training">Start Training<a class="anchor-link" href="#Start-Training"> </a></h2>
 </div>
 </div>
 </div>
@@ -204,7 +200,7 @@ nb_path: "04_train.ipynb"
     <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="k">SAVE_EVERY</span>==0:
         <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">DATA_PATH</span> <span class="o">+</span> <span class="s1">&#39;/weight/grapnet_</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">.pth&#39;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">loss_l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">3</span><span class="p">)))</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Epoch: </span><span class="si">{}</span><span class="s2">| Loss: </span><span class="si">{}</span><span class="s2">| Time elasped: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">loss_l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">ts</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Epoch: </span><span class="si">{}</span><span class="s2">| Loss: </span><span class="si">{}</span><span class="s2">| Time elasped: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">loss_l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">5</span><span class="p">),</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">ts</span><span class="p">))</span>
 </pre></div>
 
     </div>
