@@ -61,32 +61,41 @@ def get_grasp_line(theta, center, depth):
 
     return p1, p2
 
-def get_affordancemap(predict, depth):
+def get_affordancemap(predict, depth, ConvNet=False):
     """Generate grasping point and affordancemap.
 
     Inputs:
-      predict: output of HANet
+      predict: output of HANet or ConvNet
       depth: depth image (mm)
     """
-    Max = []
-    Re = []
-    Angle = [90,135,0,45]
-    height = depth.shape[0]
-    width = depth.shape[1]
-    re = np.zeros((4, height, width))
+    if ConvNet:
+        height = depth.shape[0]
+        width = depth.shape[1]
+        graspable = predict[0, 2].detach().cpu().numpy()
+        thes = 0
 
-    for i in range(4):
-        x, y = np.where(predict[0][i] == np.max(predict[0][i]))
-        re[i] = cv2.resize(predict[0][i], (width, height))
-        Max.append(np.max(predict[0][i]))
-        Re.append(re[i])
+    else:
+        Max = []
+        Re = []
+        Angle = [90,135,0,45]
+        height = depth.shape[0]
+        width = depth.shape[1]
+        re = np.zeros((4, height, width))
 
-    theta = Angle[Max.index(max(Max))]
-    graspable = re[Max.index(max(Max))]
-    graspable = cv2.resize(graspable, (640, 480))
-    depth = cv2.resize(depth, (640, 480))
+        for i in range(4):
+            x, y = np.where(predict[0][i] == np.max(predict[0][i]))
+            re[i] = cv2.resize(predict[0][i], (width, height))
+            Max.append(np.max(predict[0][i]))
+            Re.append(re[i])
+
+        theta = Angle[Max.index(max(Max))]
+        graspable = re[Max.index(max(Max))]
+        thes = 1
+
+    graspable = cv2.resize(graspable, (width, height))
+    depth = cv2.resize(depth, (width, height))
     graspable [depth==0] = 0
-    graspable[graspable>=1] = 0.99999
+    graspable[graspable>=thes] = 0.99999
     graspable[graspable<0] = 0
     graspable = cv2.GaussianBlur(graspable, (7, 7), 0)
     affordanceMap = (graspable/np.max(graspable)*255).astype(np.uint8)
@@ -124,7 +133,10 @@ def get_affordancemap(predict, depth):
         x = int(x)
         y = int(y)
 
-    return affordanceMap, x, y, theta
+    if ConvNet:
+        return affordanceMap, x, y
+    else:
+        return affordanceMap, x, y, theta
 
 def get_model(depth=False):
     if depth:
