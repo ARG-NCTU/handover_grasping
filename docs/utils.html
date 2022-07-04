@@ -109,11 +109,11 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_affordancemap" class="doc_header"><code>get_affordancemap</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_affordancemap</code>(<strong><code>predict</code></strong>, <strong><code>depth</code></strong>)</p>
+<h4 id="get_affordancemap" class="doc_header"><code>get_affordancemap</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_affordancemap</code>(<strong><code>predict</code></strong>, <strong><code>depth</code></strong>, <strong><code>ConvNet</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Generate grasping point and affordancemap.</p>
 <p>Inputs:
-  predict: output of HANet
+  predict: output of HANet or ConvNet
   depth: depth image (mm)</p>
 
 </div>
@@ -137,7 +137,7 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_model" class="doc_header"><code>get_model</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L129" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_model</code>(<strong><code>depth</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="get_model" class="doc_header"><code>get_model</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L141" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_model</code>(<strong><code>depth</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 
 </div>
@@ -161,7 +161,7 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_pcd_right" class="doc_header"><code>get_pcd_right</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L142" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pcd_right</code>(<strong><code>rgb_np</code></strong>, <strong><code>depth_np</code></strong>, <strong><code>rotate_matrix</code></strong>)</p>
+<h4 id="get_pcd_right" class="doc_header"><code>get_pcd_right</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L154" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pcd_right</code>(<strong><code>rgb_np</code></strong>, <strong><code>depth_np</code></strong>, <strong><code>rotate_matrix</code></strong>)</p>
 </blockquote>
 <p>Get pcd from RGB-D image and transfer it from camera_right to target frame</p>
 <p>Inputs:
@@ -190,7 +190,7 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_pcd_left" class="doc_header"><code>get_pcd_left</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L164" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pcd_left</code>(<strong><code>rgb_np</code></strong>, <strong><code>depth_np</code></strong>, <strong><code>rotate_matrix</code></strong>)</p>
+<h4 id="get_pcd_left" class="doc_header"><code>get_pcd_left</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L176" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pcd_left</code>(<strong><code>rgb_np</code></strong>, <strong><code>depth_np</code></strong>, <strong><code>rotate_matrix</code></strong>)</p>
 </blockquote>
 <p>Get pcd from RGB-D image and transfer it from camera_left to target frame</p>
 <p>Inputs:
@@ -219,7 +219,7 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_view" class="doc_header"><code>get_view</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L186" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_view</code>(<strong><code>pcd1</code></strong>, <strong><code>pcd2</code></strong>, <strong><code>front</code></strong>, <strong><code>lookat</code></strong>, <strong><code>up</code></strong>, <strong><code>zoom</code></strong>)</p>
+<h4 id="get_view" class="doc_header"><code>get_view</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_view</code>(<strong><code>pcd1</code></strong>, <strong><code>pcd2</code></strong>, <strong><code>front</code></strong>, <strong><code>lookat</code></strong>, <strong><code>up</code></strong>, <strong><code>zoom</code></strong>)</p>
 </blockquote>
 <p>Generate multi-view RGB-D image from pointcloud</p>
 <p>Inputs:
@@ -248,7 +248,7 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="vis" class="doc_header"><code>vis</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L220" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>vis</code>(<strong><code>pcd_list</code></strong>, <strong><code>show_axis</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="vis" class="doc_header"><code>vis</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L232" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>vis</code>(<strong><code>pcd_list</code></strong>, <strong><code>show_axis</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>visualize pointcloud</p>
 <p>Inputs:
