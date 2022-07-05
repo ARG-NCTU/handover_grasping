@@ -13,12 +13,14 @@ import open3d as o3d
 from matplotlib import pyplot as plt
 
 
-def Image_table(col, row, img_list):
+def Image_table(col, row, img_list, title_list=None):
     if len(img_list) == (col*row):
         fig = plt.figure(figsize=(10, 10))
         pt = 0
         for i in range(1, (col*row + 1)):
             fig.add_subplot(row, col, i)
+            if title_list!= None:
+                plt.title(title_list[pt])
             plt.axis('off')
             plt.imshow(img_list[pt])
             pt += 1
@@ -38,7 +40,8 @@ def get_grasp_line(theta, center, depth):
     """
     depth = depth/1000.0
     if depth[center[0], center[1]] < 0.1:
-        dis = 0.356 - 0.199
+        dis_ = (np.max(depth) + np.min(depth))*0.5
+        dis = dis_ - 0.199
     else:
         dis = depth[center[0], center[1]] - 0.199
 

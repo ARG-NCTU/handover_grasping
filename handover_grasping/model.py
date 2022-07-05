@@ -372,6 +372,7 @@ class DopeNetwork(nn.Module):
 
         return model
 
+# ref:https://github.com/NVlabs/Deep_Object_Pose/blob/master/scripts/train2/inference.py
 class Draw(object):
     """Drawing helper class to visualize the neural network output"""
 
@@ -432,6 +433,7 @@ class Draw(object):
         self.draw_line(points[0], points[5], color)
         self.draw_line(points[1], points[4], color)
 
+# ref:https://github.com/NVlabs/Deep_Object_Pose/blob/master/scripts/train2/inference.py
 class DopeNode(object):
     """ROS node that listens to image topic, runs DOPE, and publishes DOPE results"""
     def __init__(self,
