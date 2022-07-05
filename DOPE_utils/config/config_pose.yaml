@@ -6,16 +6,16 @@ downscale_height: 400      # if the input image is larger than this, scale it do
 
 # Comment any of these lines to prevent detection / pose estimation of that object
 weights: {
-    "Spaghetti":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/Spaghetti.pth",
-    "mustard":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/mustard_60.pth",
-    "Butter":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/Butter.pth",
-    "BBQSauce":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/BBQSauce.pth",
-    "Mayo":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/Mayo.pth",
-    "Popcorn":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/Popcorn.pth",
-    "soup":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/soup_60.pth",
-    "Raisins":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/Raisins.pth",
-    "ChocolatePudding":"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/ChocolatePudding.pth",
-    'sugar':"/home/arg/handover_grasping/DOPE_utils/pretrained_weight/sugar_60.pth"
+    "Spaghetti":"/home/arg/handover_grasping/model/pretrained_weight/Spaghetti.pth",
+    "mustard":"/home/arg/handover_grasping/model/pretrained_weight/mustard_60.pth",
+    "Butter":"/home/arg/handover_grasping/model/pretrained_weight/Butter.pth",
+    "BBQSauce":"/home/arg/handover_grasping/model/pretrained_weight/BBQSauce.pth",
+    "Mayo":"/home/arg/handover_grasping/model/pretrained_weight/Mayo.pth",
+    "Popcorn":"/home/arg/handover_grasping/model/pretrained_weight/Popcorn.pth",
+    "soup":"/home/arg/handover_grasping/model/pretrained_weight/soup_60.pth",
+    "Raisins":"/home/arg/handover_grasping/model/pretrained_weight/Raisins.pth",
+    "ChocolatePudding":"/home/arg/handover_grasping/model/pretrained_weight/ChocolatePudding.pth",
+    'sugar':"/home/arg/handover_grasping/model/pretrained_weight/sugar_60.pth"
 }
 
 # Type of neural network architecture
