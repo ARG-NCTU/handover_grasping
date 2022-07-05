@@ -51,8 +51,9 @@ class handover_grasping_dataset(Dataset):
             depth_img = cv2.imread(self.data_dir+"/depth/depth_"+idx_name+'.jpg', -1)
             depth_origin = cv2.imread(self.data_dir+"/depth/depth_"+idx_name+'.jpg', -1).astype(float)
         if self.depth_t != 'npy':
-            depth_img = depth_img[:,:,0]
-            depth_origin = depth_origin[:,:,0]
+            if len(depth_img.shape) == 3:
+                depth_img = depth_img[:,:,0]
+                depth_origin = depth_origin[:,:,0]
 
         if depth_origin.shape[0] == 224:
             depth_origin = cv2.resize(depth_origin,(640,480))
@@ -143,7 +144,10 @@ class rosenberger_dataloader():
             depth = depth/1000.0
         else:
             depth = cv2.imread(self.data_path+'/depth/depth_'+idx+'.png',-1)
-            depth = depth[:,:,0]/1000.0
+            if len(depth.shape) == 3:
+                depth = depth[:,:,0]/1000.0
+            else:
+                depth = depth/1000.0
 
         mask_hand = cv2.imread(self.data_path+'/mask_hand/mask_hand_'+idx+'.png', cv2.IMREAD_GRAYSCALE)
         mask_body = cv2.imread(self.data_path+'/mask_body/mask_body_'+idx+'.png', cv2.IMREAD_GRAYSCALE)
@@ -209,6 +213,7 @@ class parallel_jaw_based_grasping_dataset(Dataset):
             color_origin_img = cv2.imread(self.data_dir+"/color/color_"+idx_name+'.jpg')
             depth_img = np.load(self.data_dir+"/depth/depth_"+idx_name+'.npy')
             depth_origin_img = np.load(self.data_dir+"/depth/depth_"+idx_name+'.npy')
+
 
         color_img = color_img[:,:,[2,1,0]]
         color = (color_img/255.).astype(float)
