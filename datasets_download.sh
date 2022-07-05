@@ -12,7 +12,7 @@ cd $cwd/data
 
 # HANet training datasets
 echo "Download HANet training datasets"
-echo "111111" | sudo -S gdown --id 1Hx1UiaN_ezl82dM2C9EbVkM-2bPzqTRM
+echo "111111" | sudo -S gdown --id 1H06sHgTdl5XyPra4rNjJR5T3xch_txg-
 unzip -qq HANet_datasets.zip
 rm -f HANet_datasets.zip
 
