@@ -49,7 +49,7 @@ docker$ source install.sh
 Download HANet Datasets
 
 ```
-docker$ source sample_datasets.sh
+docker$ source datasets_download.sh
 ```
 
 Run HANet inference
