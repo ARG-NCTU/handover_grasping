@@ -58,8 +58,7 @@ Run HANet inference
 ```
 docker$ jupyter-notebook
 ```
-2. copy and paste one of these URLs:
-   http://localhost:8888/?token=d712a533509166be4c916a9085b11304eac379f6a18dee62
+2. copy and paste one of the URLs at web browser
 
 ## Dataset
 Click and Run 00_Datavisualizer.ipynb.
