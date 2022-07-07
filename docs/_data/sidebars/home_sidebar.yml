@@ -10,8 +10,8 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Title
-      url: getheightmap.html
+      title: Visualize datasets
+      url: Datavisualizer.html
     - output: web,pdf
       title: module name here
       url: core.html
@@ -21,6 +21,9 @@ entries:
     - output: web,pdf
       title: Merge two pointclouds by Open3d
       url: utils.html
+    - output: web,pdf
+      title: Title
+      url: getheightmap.html
     - output: web,pdf
       title: HANet Training
       url: train.html
