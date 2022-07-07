@@ -63,9 +63,7 @@ Run HANet inference
 ```
 docker$ source install.sh
 ```
-2. kk
-
-open jupyter-notebook
+2. copy and paste one of the URLs at web browser
 
 ## Dataset
 
