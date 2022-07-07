@@ -46,21 +46,25 @@ Install
 docker$ source install.sh
 ```
 
-Download HANet Datasets
+Download HANet and other Datasets
 
 ```
 docker$ source datasets_download.sh
 ```
 
-Run HANet inference
+Download pre-trained weight
 
-1. open jupyter-notebook
 ```
-docker$ jupyter-notebook
+docker$ source model_download.sh
 ```
-2. copy and paste one of the URLs at web browser
+
+Run HANet inference
+    1. open jupyter-notebook
+    ```
+    docker$ jupyter-notebook
+    ```
+    2. copy and paste one of the URLs at web browser
 
 ## Dataset
+
 Click and Run 00_Datavisualizer.ipynb.
-
-
