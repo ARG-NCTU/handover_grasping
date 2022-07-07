@@ -23,6 +23,7 @@ RUN echo "root:root" | chpasswd
 RUN echo "${USER}:111111" | chpasswd
 
 ###################################### basic tools #####################################
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
 
 RUN apt-get -o Acquire::ForceIPv4=true update && apt-get -yq dist-upgrade \
     && apt-get -o Acquire::ForceIPv4=true install -yq --no-install-recommends \
