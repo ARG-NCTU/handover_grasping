@@ -58,9 +58,14 @@ Download pre-trained weight
 docker$ source model_download.sh
 ```
 
-Run HANet inference 
+Run HANet inference
+1. open jupyter-notebook
+```
+docker$ source install.sh
+```
+2. kk
 
-    1.open jupyter-notebook
+open jupyter-notebook
 
 ## Dataset
 
