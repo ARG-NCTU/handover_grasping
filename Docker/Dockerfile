@@ -102,6 +102,10 @@ RUN jupyter nbextension install --system --py nbgrader --overwrite
 RUN jupyter nbextension enable --system --py nbgrader
 RUN jupyter serverextension enable --system --py nbgrader
 
+###### Install Flower ######
+
+RUN pip3 install flwr
+
 ##################################### setting #####################################
 RUN chown -R ${USER}:${USER} ${HOME}/
 RUN echo "arg ALL=(ALL)  ALL" > /etc/sudoers
