@@ -129,7 +129,7 @@ of :class:<code>~torch.utils.data.DataLoader</code>.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="3a.-HANet-Training-Datasets">3a. HANet Training Datasets<a class="anchor-link" href="#3a.-HANet-Training-Datasets"> </a></h2><p>Data num : 1080</p>
-<p>Image size : RGB (224x224x3) / Depth (224x24) / Label (224x224x4)</p>
+<p>Image size : RGB (224x224x3) / Depth (224x224) / Label (224x224x4)</p>
 <p>senario: An object held by 1 of 3 sitting people at the desk or a laying person at the patient bed</p>
 <p>Source:</p>
 <ol>
@@ -271,7 +271,15 @@ of :class:<code>~torch.utils.data.DataLoader</code>.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3b.-Visualize-HANet-Easy-Testing-Datasets">3b. Visualize HANet Easy Testing Datasets<a class="anchor-link" href="#3b.-Visualize-HANet-Easy-Testing-Datasets"> </a></h2><h3 id="a.-Load-data">a. Load data<a class="anchor-link" href="#a.-Load-data"> </a></h3>
+<h2 id="3b.-Visualize-HANet-Easy-Testing-Datasets">3b. Visualize HANet Easy Testing Datasets<a class="anchor-link" href="#3b.-Visualize-HANet-Easy-Testing-Datasets"> </a></h2><p>Data num : 200</p>
+<p>Image size : RGB (224x224x3) / Depth (224x224)</p>
+<p>senario: An object held by 1 of 3 sitting people at the desk or a laying person at the patient bed</p>
+<p>Source:</p>
+<ol>
+<li>RGB-D images taken by the camera front of the bed
+### a. Load data</li>
+</ol>
+
 </div>
 </div>
 </div>
@@ -568,8 +576,12 @@ of :class:<code>~torch.utils.data.DataLoader</code>.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="1.-Visualize-DOPE-Testing-datasets">1. Visualize DOPE Testing datasets<a class="anchor-link" href="#1.-Visualize-DOPE-Testing-datasets"> </a></h2><p>Using clip images of YCB-Video, include RGB-D images 
-ref:<a href="https://github.com/yuxng/PoseCNN">https://github.com/yuxng/PoseCNN</a></p>
+<h2 id="1.-Visualize-DOPE-Testing-datasets">1. Visualize DOPE Testing datasets<a class="anchor-link" href="#1.-Visualize-DOPE-Testing-datasets"> </a></h2><p>Data num : 92</p>
+<p>Image size : RGB (224x224x3) / Depth (224x224)</p>
+<p>senario: Several objects stacked on the table</p>
+<p>Source:</p>
+<p>Using clip images of YCB-Video, include RGB-D images</p>
+<p>ref:<a href="https://github.com/yuxng/PoseCNN">https://github.com/yuxng/PoseCNN</a></p>
 
 </div>
 </div>
