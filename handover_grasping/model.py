@@ -127,7 +127,18 @@ class GGCNN():
 
 
     def largest_indices(self, array, n):
-        """Returns the n largest indices from a numpy array."""
+        """Returns the n largest indices from a numpy array.
+
+        This function return top-n index from given numpy array.
+
+        Args:
+            array (ndarray) : source array.
+            n (int) : num of index to return.
+
+        Returns:
+            index
+
+        """
         flat = array.flatten()
         indices = np.argpartition(flat, -n)[-n:]
         indices = indices[np.argsort(-flat[indices])]
@@ -135,7 +146,18 @@ class GGCNN():
         return np.unravel_index(indices, array.shape)
 
     def angle_translater(self, angle, idx):
-        """Remap angle."""
+        """Remap angle.
+
+        This function will get a specific index in pixel-wise angle numpy array and transfer from radius to degrees.
+
+        Args:
+            angle (ndarray) : angle in radius.
+            idx (list) : target index of angle array.
+
+        Returns:
+            angle (degrees)
+
+        """
         angle = (angle + np.pi/2) % np.pi - np.pi/2
         angle = angle[idx] *180/np.pi
 
@@ -161,7 +183,16 @@ class GGCNN():
     def get_grasp_pose(self, points, angle, width_img, top_n = 1):
         """Get Top-N prediction result
 
-        output : list of Top-N result:[x, y, theta]
+        This function will return top-n grasping parameter x, y, theta.
+
+        Args:
+            points (ndarray) : pixel-wise grasping point prediction by ggcnn.
+            angle (ndarray) : pixel-wise grasping angle prediction by ggcnn.
+            width_img (ndarray) : pixel-wise width_img prediction by ggcnn.
+            top_n (int) : num of Top-N.
+
+        Returns:
+            list of Top-N result:[x, y, theta]
         """
         best_g = self.largest_indices(points, top_n)
         out_list = []

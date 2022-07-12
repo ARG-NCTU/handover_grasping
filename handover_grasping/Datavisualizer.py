@@ -10,7 +10,18 @@ import numpy as np
 
 
 class handover_grasping_dataset(Dataset):
-    """Dataloader of handover datasets.
+    """Dataloader.
+
+    This Class is a dataloader for HANet.
+
+    Args:
+        data_dir(str) : Path include folders name 'color' and 'depth' and 'depth_npy'.
+        mode(str) : Define this loader is for training or inference.
+        color_type(str) : color image format.
+        depth_type(str) : depth image format.
+
+    Returns:
+        A dict
     """
     name = []
     def __init__(self, data_dir, mode='train', color_type='jpg', depth_type='npy'):
@@ -105,6 +116,18 @@ class handover_grasping_dataset(Dataset):
         return sample
 
 class rosenberger_dataloader():
+    """Dataloader.
+
+    This Class is a dataloader for GGCNN.
+
+    Args:
+        data_dir(str) : Path include folders name 'color' and 'depth' and 'depth_npy'.
+        color_type(str) : color image format.
+        depth_type(str) : depth image format.
+
+    Returns:
+        A dict
+    """
     def __init__(self, data_dir, color_type='jpg', depth_type='npy'):
         self.color_t = color_type
         self.depth_t = depth_type
@@ -182,6 +205,17 @@ class rosenberger_dataloader():
         return sample
 
 class parallel_jaw_based_grasping_dataset(Dataset):
+    """Dataloader.
+
+    This Class is a dataloader for ConvNet (Andy Zeng alg).
+
+    Args:
+        data_dir(str) : Path include folders name 'color' and 'depth' and 'depth_npy'.
+        use_zeng(bool) : True : load origin parallel_jaw_based_grasping_dataset, False : other datasets
+
+    Returns:
+        A dict
+    """
     def __init__(self, data_dir, use_zeng=True, scale=1./8):
         self.name = []
         self.use_zeng = use_zeng
