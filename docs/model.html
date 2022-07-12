@@ -1,6 +1,6 @@
 ---
 
-title: Inference
+title: HANet for handover
 
 
 keywords: fastai
@@ -170,7 +170,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ConvNet" class="doc_header"><code>class</code> <code>ConvNet</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/model.py#L182" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ConvNet</code>(<strong><code>n_classes</code></strong>) :: <code>Module</code></p>
+<h2 id="ConvNet" class="doc_header"><code>class</code> <code>ConvNet</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/model.py#L213" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ConvNet</code>(<strong><code>n_classes</code></strong>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -215,7 +215,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DopeNetwork" class="doc_header"><code>class</code> <code>DopeNetwork</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/model.py#L217" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DopeNetwork</code>(<strong><code>numBeliefMap</code></strong>=<em><code>9</code></em>, <strong><code>numAffinity</code></strong>=<em><code>16</code></em>, <strong><code>stop_at_stage</code></strong>=<em><code>6</code></em>) :: <code>Module</code></p>
+<h2 id="DopeNetwork" class="doc_header"><code>class</code> <code>DopeNetwork</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/model.py#L248" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DopeNetwork</code>(<strong><code>numBeliefMap</code></strong>=<em><code>9</code></em>, <strong><code>numAffinity</code></strong>=<em><code>16</code></em>, <strong><code>stop_at_stage</code></strong>=<em><code>6</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -260,7 +260,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Draw" class="doc_header"><code>class</code> <code>Draw</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/model.py#L376" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Draw</code>(<strong><code>im</code></strong>)</p>
+<h2 id="Draw" class="doc_header"><code>class</code> <code>Draw</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/model.py#L407" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Draw</code>(<strong><code>im</code></strong>)</p>
 </blockquote>
 <p>Drawing helper class to visualize the neural network output</p>
 
@@ -285,7 +285,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DopeNode" class="doc_header"><code>class</code> <code>DopeNode</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/model.py#L437" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DopeNode</code>(<strong><code>config</code></strong>)</p>
+<h2 id="DopeNode" class="doc_header"><code>class</code> <code>DopeNode</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/model.py#L468" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DopeNode</code>(<strong><code>config</code></strong>)</p>
 </blockquote>
 <p>ROS node that listens to image topic, runs DOPE, and publishes DOPE results</p>
 
@@ -306,6 +306,12 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Inference">Inference<a class="anchor-link" href="#Inference"> </a></h1>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">

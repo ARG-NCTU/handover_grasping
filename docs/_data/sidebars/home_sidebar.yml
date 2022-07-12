@@ -16,7 +16,7 @@ entries:
       title: module name here
       url: core.html
     - output: web,pdf
-      title: Inference
+      title: HANet for handover
       url: model.html
     - output: web,pdf
       title: Merge two pointclouds by Open3d
