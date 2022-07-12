@@ -14,6 +14,20 @@ from matplotlib import pyplot as plt
 
 
 def Image_table(col, row, img_list, title_list=None):
+    """Create a Images table and show it.
+
+    This function will show a col x row table with col x row images and titles.
+
+    Args:
+        col (str) : col of table.
+        row (str) : row of table.
+        img_list (list) : A list contain images [img1, img2, ..imgn].
+        title_list (list) : A list contain titles [title1, title2, ..titlen].
+
+    Returns:
+        None.
+
+    """
     if len(img_list) == (col*row):
         fig = plt.figure(figsize=(10, 10))
         pt = 0
@@ -31,12 +45,18 @@ def Image_table(col, row, img_list, title_list=None):
 
 
 def get_grasp_line(theta, center, depth):
-    """Generate grasping two endpoints of grasping line(8cm).
+    """Generate grasping two endpoints of grasping line (8cm).
 
-    Inputs:
-      theta: degree
-      center: x, y coordinate
-      depth: depth image (mm)
+    This function give two end points of a line (8cm) that project from
+    3D to 2D by given line center, angle and depth image.
+
+    Args:
+      theta (float): Angle to the horizontal 0 ~ 360.
+      center (list): x, y 2D coordinate
+      depth (ndarray): mxn depth image (scale : micrometer)
+
+    Returns:
+        two end points of a line.
     """
     depth = depth/1000.0
     if depth[center[0], center[1]] < 0.1:
@@ -67,9 +87,15 @@ def get_grasp_line(theta, center, depth):
 def get_affordancemap(predict, depth, ConvNet=False):
     """Generate grasping point and affordancemap.
 
-    Inputs:
-      predict: output of HANet or ConvNet
-      depth: depth image (mm)
+    This function give an affordanceMap and grasping parameters for HANet and ConvNet.
+
+    Args:
+      predict (tensor): Output from HANet or ConvNet.
+      depth (ndarray): mxn depth image (scale : micrometer)
+      ConvNet (bool): True : for ConvNet, False : for HANet
+
+    Returns:
+        affordanceMap, grasping 2D coordinate x and y, theta
     """
     if ConvNet:
         height = depth.shape[0]
@@ -142,6 +168,13 @@ def get_affordancemap(predict, depth, ConvNet=False):
         return affordanceMap, x, y, theta
 
 def get_model(depth=False):
+    """Download HANet pre-trained weight.
+
+    This function is for Class HANet and HANet_depth to download pre-trained weight.
+
+    Args:
+      depth (bool): True : for HANet_depth, False : for HANet
+    """
     if depth:
         url = 'https://drive.google.com/u/1/uc?id=12dmpqU8_PqBPLdyW4in65X6meWWEdAwJ'
         name = 'HANet_depth'
@@ -157,10 +190,15 @@ def get_model(depth=False):
 def get_pcd_right(rgb_np, depth_np, rotate_matrix):
     """Get pcd from RGB-D image and transfer it from camera_right to target frame
 
-    Inputs:
-      rgb_np: RGB image in numpy array type
-      depth_np: DEPTH image in numpy array type
-      rotate_matrix: transfer matrix for camera_right optical frame to target frame
+    This function take RGB-D image and convert to point cloud by opend3d.
+
+    Args:
+      rgb_np (ndarray) : RGB image (mxnx3).
+      depth_np (ndarray) : DEPTH image (mxn).
+      rotate_matrix (list) : 4x4 transfer matrix for camera_right optical frame to target frame.
+
+    Returns:
+        pointcloud and frame tf.
     """
     axis = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.3, origin=[0,0,0])
     rgb = o3d.geometry.Image(rgb_np)
@@ -179,10 +217,15 @@ def get_pcd_right(rgb_np, depth_np, rotate_matrix):
 def get_pcd_left(rgb_np, depth_np, rotate_matrix):
     """Get pcd from RGB-D image and transfer it from camera_left to target frame
 
-    Inputs:
-      rgb_np: RGB image in numpy array type
-      depth_np: DEPTH image in numpy array type
-      rotate_matrix: transfer matrix for camera_left optical frame to target frame
+    This function take RGB-D image and convert to point cloud by opend3d.
+
+    Args:
+      rgb_np (ndarray) : RGB image (mxnx3).
+      depth_np (ndarray) : DEPTH image (mxn).
+      rotate_matrix (list) : 4x4 transfer matrix for camera_right optical frame to target frame.
+
+    Returns:
+        pointcloud and frame tf.
     """
     axis = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.3, origin=[0,0,0])
     rgb = o3d.geometry.Image(rgb_np)
@@ -199,12 +242,18 @@ def get_pcd_left(rgb_np, depth_np, rotate_matrix):
     return pcd_sel2, axis
 
 def get_view(pcd1, pcd2, front, lookat, up, zoom):
-    """Generate multi-view RGB-D image from pointcloud
+    """Generate multi-view RGB-D image from pointclouds
 
-    Inputs:
-      pcd1: pointcloud1
-      pcd2: pointcloud2
-      front, lookat, up, zoom: parameters to define view direction
+    This function take 2 pointclouds(in same frame) and get image in specific view parameters.
+
+    Args:
+        front (list) : 1x3 vector.
+        lookat (list) : 1x3 vector.
+        up (list) : 1x3 vector.
+        zoom (float) : a float number to define zoom.
+
+    Returns:
+        RGB and Depth images.
     """
     vis = o3d.visualization.Visualizer()
     vis.create_window(visible=False)
@@ -235,8 +284,11 @@ def get_view(pcd1, pcd2, front, lookat, up, zoom):
 def vis(pcd_list, show_axis=False):
     """visualize pointcloud
 
-    Inputs:
-      pcd_list: list contain pcds [pcd1, pcd2,...,pcdn]
+    This function take multiple pointclouds and show all of them by opend3d.
+
+    Args:
+      pcd_list (list) : list contain pcds [pcd1, pcd2,...,pcdn].
+      show_axis (bool) : Show frame tf ot not.
     """
     axis = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.3, origin=[0,0,0])
     vis = o3d.visualization.Visualizer()
