@@ -6,6 +6,7 @@
     "Inference": "model.html",
     "Merge two pointclouds by Open3d": "utils.html",
     "Title": "getheightmap.html",
-    "HANet Training": "train.html"
+    "HANet Training": "train.html",
+    "Federated Learning example": "Federated_Learning_example.html"
   }
 }

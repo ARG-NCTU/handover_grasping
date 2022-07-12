@@ -27,6 +27,9 @@ entries:
     - output: web,pdf
       title: HANet Training
       url: train.html
+    - output: web,pdf
+      title: Federated Learning example
+      url: Federated_Learning_example.html
     output: web
     title: handover_grasping
   output: web
