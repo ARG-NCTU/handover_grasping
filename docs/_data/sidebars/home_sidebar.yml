@@ -17,7 +17,7 @@ entries:
       url: core.html
     - output: web,pdf
       title: HANet for handover
-      url: model.html
+      url: grasping_estimation.html
     - output: web,pdf
       title: Merge two pointclouds by Open3d
       url: utils.html
@@ -25,7 +25,7 @@ entries:
       title: Title
       url: getheightmap.html
     - output: web,pdf
-      title: HANet Training
+      title: 'Training HANet '
       url: train.html
     - output: web,pdf
       title: Federated Learning example

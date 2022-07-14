@@ -3,10 +3,10 @@
     "Overview": "/",
     "Visualize datasets": "Datavisualizer.html",
     "module name here": "core.html",
-    "HANet for handover": "model.html",
+    "HANet for handover": "grasping_estimation.html",
     "Merge two pointclouds by Open3d": "utils.html",
     "Title": "getheightmap.html",
-    "HANet Training": "train.html",
+    "Training HANet ": "train.html",
     "Federated Learning example": "Federated_Learning_example.html"
   }
 }
