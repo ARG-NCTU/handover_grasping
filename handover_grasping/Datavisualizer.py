@@ -34,10 +34,7 @@ class handover_grasping_dataset(Dataset):
         self.transform = transforms.Compose([
                         transforms.ToTensor(),
                     ])
-        if self.mode == 'train':
-            f = open(self.data_dir+"/train.txt", "r")
-        else:
-            f = open(self.data_dir+"/test.txt", "r")
+        f = open(self.data_dir+"/"+self.mode+".txt", "r")
         for _, line in enumerate(f):
               self.name.append(line.replace("\n", ""))
 
@@ -71,7 +68,7 @@ class handover_grasping_dataset(Dataset):
 
         depth_img = cv2.resize(depth_img,(224,224))
 
-        if self.mode == 'train':
+        if self.mode != 'test':
             label_img = np.load(self.data_dir+"/label/label_"+idx_name+'.npy')
 
             f = open(self.data_dir+'/idx/id_'+idx_name+'.txt', "r")
@@ -108,10 +105,10 @@ class handover_grasping_dataset(Dataset):
         depth_tensor = self.transform(depth_3c).float()
 
 
-        if self.mode == 'train':
-            sample = {"color": color_tensor, "depth": depth_tensor, "label": label_tensor, "id": IDX, "color_origin": color_origin, "depth_origin": depth_origin}
-        else:
+        if self.mode == 'test':
             sample = {"color": color_tensor, "depth": depth_tensor, "color_origin": color_origin, "depth_origin": depth_origin}
+        else:
+            sample = {"color": color_tensor, "depth": depth_tensor, "label": label_tensor, "id": IDX, "color_origin": color_origin, "depth_origin": depth_origin}
 
         return sample
 
