@@ -7,6 +7,6 @@
     "Merge two pointclouds by Open3d": "utils.html",
     "Title": "getheightmap.html",
     "Training HANet ": "train.html",
-    "Federated Learning example": "Federated_Learning_example.html"
+    "Federated Learning example": "HANet_Fl_Client.html"
   }
 }

@@ -29,7 +29,7 @@ entries:
       url: train.html
     - output: web,pdf
       title: Federated Learning example
-      url: Federated_Learning_example.html
+      url: HANet_Fl_Client.html
     output: web
     title: handover_grasping
   output: web
