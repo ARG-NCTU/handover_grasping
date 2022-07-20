@@ -72,6 +72,69 @@ class HANet(nn.Module):
         else:
             self.net = self.FCN_model(n_classes=n_class)
 
+    def get_affordanceMap(self, input_color, input_depth, depth_origin):
+        with torch.no_grad():
+            predict = self.net(input_color, input_depth)
+        predict = predict.cpu().detach().numpy()
+        Max = []
+        Re = []
+        Angle = [90,135,0,45]
+        height = depth_origin.shape[0]
+        width = depth_origin.shape[1]
+        re = np.zeros((4, height, width))
+
+        for i in range(4):
+            x, y = np.where(predict[0][i] == np.max(predict[0][i]))
+            re[i] = cv2.resize(predict[0][i], (width, height))
+            Max.append(np.max(predict[0][i]))
+            Re.append(re[i])
+
+        theta = Angle[Max.index(max(Max))]
+        graspable = re[Max.index(max(Max))]
+
+        graspable = cv2.resize(graspable, (width, height))
+        depth = cv2.resize(depth_origin, (width, height))
+        graspable [depth==0] = 0
+        graspable[graspable>=1] = 0.99999
+        graspable[graspable<0] = 0
+        graspable = cv2.GaussianBlur(graspable, (7, 7), 0)
+        affordanceMap = (graspable/np.max(graspable)*255).astype(np.uint8)
+        affordanceMap = cv2.applyColorMap(affordanceMap, cv2.COLORMAP_JET)
+        affordanceMap = affordanceMap[:,:,[2,1,0]]
+
+        gray = cv2.cvtColor(affordanceMap, cv2.COLOR_RGB2GRAY)
+        blurred = cv2.GaussianBlur(gray, (11, 11), 0)
+        binaryIMG = cv2.Canny(blurred, 20, 160)
+        contours, _ = cv2.findContours(binaryIMG, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        i = 0
+        point_x = 0
+        point_y = 0
+        cX = 0
+        cY = 0
+        x = 0
+        y = 0
+
+        for c in contours:
+            M = cv2.moments(c)
+            if(M["m00"]!=0):
+                cX = int(M["m10"] / M["m00"])
+                cY = int(M["m01"] / M["m00"])
+                zc = depth[cY, cX]/1000
+                i += 1
+                point_x += cX
+                point_y += cY
+
+        if i != 0:
+            x = int(point_x / i)
+            y = int(point_y / i)
+        else:
+            x, y = np.where(predict[0][Max.index(max(Max))] == np.max(predict[0][Max.index(max(Max))]))
+            x = int(x)
+            y = int(y)
+
+        return affordanceMap, x, y, theta
+
     def forward(self, Color, Depth):
         output = self.net(Color, Depth)
 
