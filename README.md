@@ -61,7 +61,7 @@ docker$ source model_download.sh
 Run HANet inference
 1. open jupyter-notebook
 ```
-docker$ source install.sh
+docker$ jupyter-notebook
 ```
 2. copy and paste one of the URLs at web browser
 
