@@ -34,9 +34,13 @@ class handover_grasping_dataset(Dataset):
         self.transform = transforms.Compose([
                         transforms.ToTensor(),
                     ])
-        f = open(self.data_dir+"/"+self.mode+".txt", "r")
+        if mode != 'fl_test':
+            f = open(self.data_dir+"/"+self.mode+".txt", "r")
+        else:
+            f = open(self.data_dir+"/"+"test"+".txt", "r")
+
         for _, line in enumerate(f):
-              self.name.append(line.replace("\n", ""))
+                  self.name.append(line.replace("\n", ""))
 
     def __len__(self):
         return len(self.name)
