@@ -23,7 +23,6 @@ class handover_grasping_dataset(Dataset):
     Returns:
         A dict
     """
-    name = []
     def __init__(self, data_dir, mode='train', color_type='jpg', depth_type='npy'):
         self.image_net_mean = np.array([0.485, 0.456, 0.406])
         self.image_net_std  = np.array([0.229, 0.224, 0.225])
@@ -31,6 +30,7 @@ class handover_grasping_dataset(Dataset):
         self.mode = mode
         self.color_t = color_type
         self.depth_t = depth_type
+        self.name = []
         self.transform = transforms.Compose([
                         transforms.ToTensor(),
                     ])
