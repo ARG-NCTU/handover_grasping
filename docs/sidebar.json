@@ -1,10 +1,12 @@
 {
   "handover_grasping": {
     "Overview": "/",
-    "Title": "getheightmap.html",
+    "Visualize datasets": "Datavisualizer.html",
     "module name here": "core.html",
-    "Inference": "model.html",
+    "HANet for handover": "grasping_estimation.html",
     "Merge two pointclouds by Open3d": "utils.html",
-    "HANet Training": "train.html"
+    "Title": "getheightmap.html",
+    "Training HANet ": "train.html",
+    "Federated Learning example": "HANet_Fl_Client.html"
   }
 }

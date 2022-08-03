@@ -12,9 +12,9 @@ cd $cwd/data
 
 # HANet training datasets
 echo "Download HANet training datasets"
-echo "111111" | sudo -S gdown --id 1Hx1UiaN_ezl82dM2C9EbVkM-2bPzqTRM
-unzip -qq HANet_datasets.zip
-rm -f HANet_datasets.zip
+echo "111111" | sudo -S gdown --id 1SOnUL_UmpuD2UY6Qkmtk0uc6O3A4KqRl
+unzip -qq HANet_training_datasets.zip
+rm -f HANet_training_datasets.zip
 
 # HANet testing datasets
 echo "Download HANet testing datasets"
@@ -44,7 +44,7 @@ rm -f multi_view.zip
 echo "Download parallel-jaw-grasping-datase"
 echo "111111" | sudo -S gdown --id 1UKx5Bf0Wwg1RAr21UOBvibe03DcHvnwc
 unzip -qq parallel-jaw-grasping-dataset.zip
-rm -f parallel-jaw-grasping-dataset.zip.
+rm -f parallel-jaw-grasping-dataset.zip
 mv data parallel-jaw-grasping-dataset
 
 cd ..

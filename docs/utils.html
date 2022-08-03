@@ -58,6 +58,15 @@ nb_path: "02_utils.ipynb"
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="Image_table" class="doc_header"><code>Image_table</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Image_table</code>(<strong><code>col</code></strong>, <strong><code>row</code></strong>, <strong><code>img_list</code></strong>, <strong><code>title_list</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
+<p>Create a Images table and show it.</p>
+<p>This function will show a col x row table with col x row images and titles.</p>
+<p>Args:
+    col (str) : col of table.
+    row (str) : row of table.
+    img_list (list) : A list contain images [img1, img2, ..imgn].
+    title_list (list) : A list contain titles [title1, title2, ..titlen].</p>
+<p>Returns:
+    None.</p>
 
 </div>
 
@@ -80,13 +89,17 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_grasp_line" class="doc_header"><code>get_grasp_line</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_grasp_line</code>(<strong><code>theta</code></strong>, <strong><code>center</code></strong>, <strong><code>depth</code></strong>)</p>
+<h4 id="get_grasp_line" class="doc_header"><code>get_grasp_line</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L47" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_grasp_line</code>(<strong><code>theta</code></strong>, <strong><code>center</code></strong>, <strong><code>depth</code></strong>)</p>
 </blockquote>
-<p>Generate grasping two endpoints of grasping line(8cm).</p>
-<p>Inputs:
-  theta: degree
-  center: x, y coordinate
-  depth: depth image (mm)</p>
+<p>Generate grasping two endpoints of grasping line (8cm).</p>
+<p>This function give two end points of a line (8cm) that project from
+3D to 2D by given line center, angle and depth image.</p>
+<p>Args:
+  theta (float): Angle to the horizontal 0 ~ 360.
+  center (list): x, y 2D coordinate
+  depth (ndarray): mxn depth image (scale : micrometer)</p>
+<p>Returns:
+    two end points of a line.</p>
 
 </div>
 
@@ -109,12 +122,16 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_affordancemap" class="doc_header"><code>get_affordancemap</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L67" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_affordancemap</code>(<strong><code>predict</code></strong>, <strong><code>depth</code></strong>, <strong><code>ConvNet</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="get_affordancemap" class="doc_header"><code>get_affordancemap</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L87" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_affordancemap</code>(<strong><code>predict</code></strong>, <strong><code>depth</code></strong>, <strong><code>ConvNet</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Generate grasping point and affordancemap.</p>
-<p>Inputs:
-  predict: output of HANet or ConvNet
-  depth: depth image (mm)</p>
+<p>This function give an affordanceMap and grasping parameters for HANet and ConvNet.</p>
+<p>Args:
+  predict (tensor): Output from HANet or ConvNet.
+  depth (ndarray): mxn depth image (scale : micrometer)
+  ConvNet (bool): True : for ConvNet, False : for HANet</p>
+<p>Returns:
+    affordanceMap, grasping 2D coordinate x and y, theta</p>
 
 </div>
 
@@ -137,8 +154,12 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_model" class="doc_header"><code>get_model</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L144" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_model</code>(<strong><code>depth</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="get_model" class="doc_header"><code>get_model</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L170" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_model</code>(<strong><code>depth</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
+<p>Download HANet pre-trained weight.</p>
+<p>This function is for Class HANet and HANet_depth to download pre-trained weight.</p>
+<p>Args:
+  depth (bool): True : for HANet_depth, False : for HANet</p>
 
 </div>
 
@@ -161,13 +182,16 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_pcd_right" class="doc_header"><code>get_pcd_right</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L157" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pcd_right</code>(<strong><code>rgb_np</code></strong>, <strong><code>depth_np</code></strong>, <strong><code>rotate_matrix</code></strong>)</p>
+<h4 id="get_pcd_right" class="doc_header"><code>get_pcd_right</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L190" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pcd_right</code>(<strong><code>rgb_np</code></strong>, <strong><code>depth_np</code></strong>, <strong><code>rotate_matrix</code></strong>)</p>
 </blockquote>
 <p>Get pcd from RGB-D image and transfer it from camera_right to target frame</p>
-<p>Inputs:
-  rgb_np: RGB image in numpy array type
-  depth_np: DEPTH image in numpy array type
-  rotate_matrix: transfer matrix for camera_right optical frame to target frame</p>
+<p>This function take RGB-D image and convert to point cloud by opend3d.</p>
+<p>Args:
+  rgb_np (ndarray) : RGB image (mxnx3).
+  depth_np (ndarray) : DEPTH image (mxn).
+  rotate_matrix (list) : 4x4 transfer matrix for camera_right optical frame to target frame.</p>
+<p>Returns:
+    pointcloud and frame tf.</p>
 
 </div>
 
@@ -190,13 +214,16 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_pcd_left" class="doc_header"><code>get_pcd_left</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L179" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pcd_left</code>(<strong><code>rgb_np</code></strong>, <strong><code>depth_np</code></strong>, <strong><code>rotate_matrix</code></strong>)</p>
+<h4 id="get_pcd_left" class="doc_header"><code>get_pcd_left</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L217" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pcd_left</code>(<strong><code>rgb_np</code></strong>, <strong><code>depth_np</code></strong>, <strong><code>rotate_matrix</code></strong>)</p>
 </blockquote>
 <p>Get pcd from RGB-D image and transfer it from camera_left to target frame</p>
-<p>Inputs:
-  rgb_np: RGB image in numpy array type
-  depth_np: DEPTH image in numpy array type
-  rotate_matrix: transfer matrix for camera_left optical frame to target frame</p>
+<p>This function take RGB-D image and convert to point cloud by opend3d.</p>
+<p>Args:
+  rgb_np (ndarray) : RGB image (mxnx3).
+  depth_np (ndarray) : DEPTH image (mxn).
+  rotate_matrix (list) : 4x4 transfer matrix for camera_right optical frame to target frame.</p>
+<p>Returns:
+    pointcloud and frame tf.</p>
 
 </div>
 
@@ -219,13 +246,17 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_view" class="doc_header"><code>get_view</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L201" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_view</code>(<strong><code>pcd1</code></strong>, <strong><code>pcd2</code></strong>, <strong><code>front</code></strong>, <strong><code>lookat</code></strong>, <strong><code>up</code></strong>, <strong><code>zoom</code></strong>)</p>
+<h4 id="get_view" class="doc_header"><code>get_view</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L244" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_view</code>(<strong><code>pcd1</code></strong>, <strong><code>pcd2</code></strong>, <strong><code>front</code></strong>, <strong><code>lookat</code></strong>, <strong><code>up</code></strong>, <strong><code>zoom</code></strong>)</p>
 </blockquote>
-<p>Generate multi-view RGB-D image from pointcloud</p>
-<p>Inputs:
-  pcd1: pointcloud1
-  pcd2: pointcloud2
-  front, lookat, up, zoom: parameters to define view direction</p>
+<p>Generate multi-view RGB-D image from pointclouds</p>
+<p>This function take 2 pointclouds(in same frame) and get image in specific view parameters.</p>
+<p>Args:
+    front (list) : 1x3 vector.
+    lookat (list) : 1x3 vector.
+    up (list) : 1x3 vector.
+    zoom (float) : a float number to define zoom.</p>
+<p>Returns:
+    RGB and Depth images.</p>
 
 </div>
 
@@ -248,11 +279,13 @@ nb_path: "02_utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="vis" class="doc_header"><code>vis</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L235" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>vis</code>(<strong><code>pcd_list</code></strong>, <strong><code>show_axis</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="vis" class="doc_header"><code>vis</code><a href="https://github.com/ARG-NCTU/handover_grasping/tree/{branch}/handover_grasping/utils.py#L284" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>vis</code>(<strong><code>pcd_list</code></strong>, <strong><code>show_axis</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>visualize pointcloud</p>
-<p>Inputs:
-  pcd_list: list contain pcds [pcd1, pcd2,...,pcdn]</p>
+<p>This function take multiple pointclouds and show all of them by opend3d.</p>
+<p>Args:
+  pcd_list (list) : list contain pcds [pcd1, pcd2,...,pcdn].
+  show_axis (bool) : Show frame tf ot not.</p>
 
 </div>
 

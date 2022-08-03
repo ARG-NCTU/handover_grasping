@@ -32,7 +32,7 @@ Run nbdev_build_docs to generate documentations in /docs
 $ nbdev_build_docs
 ```
 
-## How to use
+## Initialize
 
 Run docker
 
@@ -43,18 +43,28 @@ $ source Docker/docker_run.sh
 Install
 
 ```
-$ source install.sh
+docker$ source install.sh
 ```
 
-Download HANet Datasets
+Download HANet and other Datasets
 
 ```
-$ source sample_datasets.sh
+docker$ source datasets_download.sh
+```
+
+Download pre-trained weight
+
+```
+docker$ source model_download.sh
 ```
 
 Run HANet inference
+1. open jupyter-notebook
+```
+docker$ source install.sh
+```
+2. copy and paste one of the URLs at web browser
 
-```
-$ cd example
-$ python3 inference.py
-```
+## Dataset
+
+Click and Run 00_Datavisualizer.ipynb.

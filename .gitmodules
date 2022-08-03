@@ -1,0 +1,3 @@
+[submodule "flower"]
+	path = flower
+	url = git@github.com:ARG-NCTU/flower.git

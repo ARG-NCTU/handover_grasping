@@ -23,6 +23,7 @@ RUN echo "root:root" | chpasswd
 RUN echo "${USER}:111111" | chpasswd
 
 ###################################### basic tools #####################################
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
 
 RUN apt-get -o Acquire::ForceIPv4=true update && apt-get -yq dist-upgrade \
     && apt-get -o Acquire::ForceIPv4=true install -yq --no-install-recommends \
@@ -100,6 +101,10 @@ RUN pip3 install nbgrader==0.6.1
 RUN jupyter nbextension install --system --py nbgrader --overwrite
 RUN jupyter nbextension enable --system --py nbgrader
 RUN jupyter serverextension enable --system --py nbgrader
+
+###### Install Flower ######
+
+RUN pip3 install flwr
 
 ##################################### setting #####################################
 RUN chown -R ${USER}:${USER} ${HOME}/

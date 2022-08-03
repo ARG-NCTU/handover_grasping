@@ -10,9 +10,19 @@ import numpy as np
 
 
 class handover_grasping_dataset(Dataset):
-    """Dataloader of handover datasets.
+    """Dataloader.
+
+    This Class is a dataloader for HANet.
+
+    Args:
+        data_dir(str) : Path include folders name 'color' and 'depth' and 'depth_npy'.
+        mode(str) : Define this loader is for training or inference.
+        color_type(str) : color image format.
+        depth_type(str) : depth image format.
+
+    Returns:
+        A dict
     """
-    name = []
     def __init__(self, data_dir, mode='train', color_type='jpg', depth_type='npy'):
         self.image_net_mean = np.array([0.485, 0.456, 0.406])
         self.image_net_std  = np.array([0.229, 0.224, 0.225])
@@ -20,15 +30,17 @@ class handover_grasping_dataset(Dataset):
         self.mode = mode
         self.color_t = color_type
         self.depth_t = depth_type
+        self.name = []
         self.transform = transforms.Compose([
                         transforms.ToTensor(),
                     ])
-        if self.mode == 'train':
-            f = open(self.data_dir+"/train.txt", "r")
+        if mode != 'fl_test':
+            f = open(self.data_dir+"/"+self.mode+".txt", "r")
         else:
-            f = open(self.data_dir+"/test.txt", "r")
+            f = open(self.data_dir+"/"+"test"+".txt", "r")
+
         for _, line in enumerate(f):
-              self.name.append(line.replace("\n", ""))
+                  self.name.append(line.replace("\n", ""))
 
     def __len__(self):
         return len(self.name)
@@ -51,15 +63,16 @@ class handover_grasping_dataset(Dataset):
             depth_img = cv2.imread(self.data_dir+"/depth/depth_"+idx_name+'.jpg', -1)
             depth_origin = cv2.imread(self.data_dir+"/depth/depth_"+idx_name+'.jpg', -1).astype(float)
         if self.depth_t != 'npy':
-            depth_img = depth_img[:,:,0]
-            depth_origin = depth_origin[:,:,0]
+            if len(depth_img.shape) == 3:
+                depth_img = depth_img[:,:,0]
+                depth_origin = depth_origin[:,:,0]
 
         if depth_origin.shape[0] == 224:
             depth_origin = cv2.resize(depth_origin,(640,480))
 
         depth_img = cv2.resize(depth_img,(224,224))
 
-        if self.mode == 'train':
+        if self.mode != 'test':
             label_img = np.load(self.data_dir+"/label/label_"+idx_name+'.npy')
 
             f = open(self.data_dir+'/idx/id_'+idx_name+'.txt', "r")
@@ -96,14 +109,26 @@ class handover_grasping_dataset(Dataset):
         depth_tensor = self.transform(depth_3c).float()
 
 
-        if self.mode == 'train':
-            sample = {"color": color_tensor, "depth": depth_tensor, "label": label_tensor, "id": IDX, "color_origin": color_origin, "depth_origin": depth_origin}
-        else:
+        if self.mode == 'test':
             sample = {"color": color_tensor, "depth": depth_tensor, "color_origin": color_origin, "depth_origin": depth_origin}
+        else:
+            sample = {"color": color_tensor, "depth": depth_tensor, "label": label_tensor, "id": IDX, "color_origin": color_origin, "depth_origin": depth_origin}
 
         return sample
 
 class rosenberger_dataloader():
+    """Dataloader.
+
+    This Class is a dataloader for GGCNN.
+
+    Args:
+        data_dir(str) : Path include folders name 'color' and 'depth' and 'depth_npy'.
+        color_type(str) : color image format.
+        depth_type(str) : depth image format.
+
+    Returns:
+        A dict
+    """
     def __init__(self, data_dir, color_type='jpg', depth_type='npy'):
         self.color_t = color_type
         self.depth_t = depth_type
@@ -143,7 +168,10 @@ class rosenberger_dataloader():
             depth = depth/1000.0
         else:
             depth = cv2.imread(self.data_path+'/depth/depth_'+idx+'.png',-1)
-            depth = depth[:,:,0]/1000.0
+            if len(depth.shape) == 3:
+                depth = depth[:,:,0]/1000.0
+            else:
+                depth = depth/1000.0
 
         mask_hand = cv2.imread(self.data_path+'/mask_hand/mask_hand_'+idx+'.png', cv2.IMREAD_GRAYSCALE)
         mask_body = cv2.imread(self.data_path+'/mask_body/mask_body_'+idx+'.png', cv2.IMREAD_GRAYSCALE)
@@ -178,6 +206,17 @@ class rosenberger_dataloader():
         return sample
 
 class parallel_jaw_based_grasping_dataset(Dataset):
+    """Dataloader.
+
+    This Class is a dataloader for ConvNet (Andy Zeng alg).
+
+    Args:
+        data_dir(str) : Path include folders name 'color' and 'depth' and 'depth_npy'.
+        use_zeng(bool) : True : load origin parallel_jaw_based_grasping_dataset, False : other datasets
+
+    Returns:
+        A dict
+    """
     def __init__(self, data_dir, use_zeng=True, scale=1./8):
         self.name = []
         self.use_zeng = use_zeng
@@ -209,6 +248,7 @@ class parallel_jaw_based_grasping_dataset(Dataset):
             color_origin_img = cv2.imread(self.data_dir+"/color/color_"+idx_name+'.jpg')
             depth_img = np.load(self.data_dir+"/depth/depth_"+idx_name+'.npy')
             depth_origin_img = np.load(self.data_dir+"/depth/depth_"+idx_name+'.npy')
+
 
         color_img = color_img[:,:,[2,1,0]]
         color = (color_img/255.).astype(float)
