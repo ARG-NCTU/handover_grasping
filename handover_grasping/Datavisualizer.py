@@ -23,7 +23,7 @@ class handover_grasping_dataset(Dataset):
     Returns:
         A dict
     """
-    def __init__(self, data_dir, mode='train', color_type='jpg', depth_type='npy'):
+    def __init__(self, data_dir, mode='train', color_type='jpg', depth_type='npy', HANet_d=False):
         self.image_net_mean = np.array([0.485, 0.456, 0.406])
         self.image_net_std  = np.array([0.229, 0.224, 0.225])
         self.data_dir = data_dir
@@ -31,6 +31,7 @@ class handover_grasping_dataset(Dataset):
         self.color_t = color_type
         self.depth_t = depth_type
         self.name = []
+        self.had = HANet_d
         self.transform = transforms.Compose([
                         transforms.ToTensor(),
                     ])
@@ -66,9 +67,14 @@ class handover_grasping_dataset(Dataset):
             if len(depth_img.shape) == 3:
                 depth_img = depth_img[:,:,0]
                 depth_origin = depth_origin[:,:,0]
+        if self.had:
+            depth_img = depth_img[0:240, 0:640]
+            depth_origin = depth_origin[0:240, 0:640]
 
-        if depth_origin.shape[0] == 224:
+        if depth_origin.shape[0] == 224 and self.had==False:
             depth_origin = cv2.resize(depth_origin,(640,480))
+        elif depth_origin.shape[0] == 224 and self.had==True:
+            depth_origin = cv2.resize(depth_origin,(640,240))
 
         depth_img = cv2.resize(depth_img,(224,224))
 
