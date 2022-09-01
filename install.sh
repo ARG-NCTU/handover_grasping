@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-python3 setup.py install
+echo 111111 | sudo -S python3 setup.py install
