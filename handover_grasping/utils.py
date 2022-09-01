@@ -176,10 +176,10 @@ def get_model(depth=False):
       depth (bool): True : for HANet_depth, False : for HANet
     """
     if depth:
-        url = 'https://drive.google.com/u/1/uc?id=1D10aq8cJYeQ--ujTJbZNz44lUUiK1yVD'
+        url = 'https://drive.google.com/u/1/uc?id=1htAlu7-NksbH4b21xxcrVA3W-KFIIYvw'
         name = 'HANet_depth'
     else:
-        url = 'https://drive.google.com/u/1/uc?id=1SqwtkWx3cSJbM3whOiNxURbpbGiRedUh'
+        url = 'https://drive.google.com/u/1/uc?id=17PBimCFf5Au1JBTYcRloMoPmwDERRfUo'
         name = 'HANet'
     path = os.path.abspath(os.getcwd())
     if not os.path.isfile(path+'/'+name + '.pth'):
