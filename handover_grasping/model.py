@@ -106,7 +106,7 @@ class HANet(nn.Module):
         gray = cv2.cvtColor(affordanceMap, cv2.COLOR_RGB2GRAY)
         blurred = cv2.GaussianBlur(gray, (11, 11), 0)
         binaryIMG = cv2.Canny(blurred, 20, 160)
-        contours, _ = cv2.findContours(binaryIMG, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        _, contours, _ = cv2.findContours(binaryIMG, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
         i = 0
         point_x = 0
