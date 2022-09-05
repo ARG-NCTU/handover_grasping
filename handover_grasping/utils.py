@@ -179,7 +179,7 @@ def get_model(depth=False):
         url = 'https://drive.google.com/u/1/uc?id=1D10aq8cJYeQ--ujTJbZNz44lUUiK1yVD'
         name = 'HANet_depth'
     else:
-        url = 'https://drive.google.com/u/1/uc?id=1v-O0Y0PRzbg0ySA20cYZY0RHnEHm0c7L'
+        url = 'https://drive.google.com/u/1/uc?id=1NlNUohwe8OA4OD7qqe2vBmCYRemxDWun'
         name = 'HANet'
     path = os.path.abspath(os.getcwd())
     if not os.path.isfile(path+'/'+name + '.pth'):
