@@ -56,6 +56,10 @@ class HANet(nn.Module):
         else:
             self.net = self.FCN_model(n_classes=n_class)
 
+    def load(self, model_path):
+        self.net.load_state_dict(torch.load(model_path))
+        print('Load pretrained complete')
+
     def get_affordanceMap(self, input_color, input_depth, depth_origin):
         """Generate grasping point and affordancemap.
 
