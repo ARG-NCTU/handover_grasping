@@ -106,6 +106,11 @@ RUN jupyter serverextension enable --system --py nbgrader
 
 RUN pip3 install flwr
 
+###### DOPE and Rosenberger ######
+RUN cd ${HOME} && git clone https://github.com/austin2408/ggcnn_humanseg_ros.git
+
+RUN cd ${HOME} && git clone https://github.com/NVlabs/Deep_Object_Pose.git
+
 ##################################### setting #####################################
 RUN chown -R ${USER}:${USER} ${HOME}/
 RUN echo "arg ALL=(ALL)  ALL" > /etc/sudoers
