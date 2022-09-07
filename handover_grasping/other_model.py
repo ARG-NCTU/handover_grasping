@@ -16,13 +16,14 @@ import simplejson as json
 
 # Rosenberger
 # ref:https://github.com/patrosAT/h2r_handovers
-from rosenberger_utils.helper_ggcnn.ggcnn import predict
-from rosenberger_utils.helper_ggcnn.pre_processing import Preparations
+sys.path.append('/home/arg/ggcnn_humanseg_ros/src/helper_ggcnn')
+from ggcnn import predict
+from pre_processing import Preparations
 
 # DOPE
 # ref:https://github.com/NVlabs/Deep_Object_Pose
-sys.path.append('/home/arg/handover_grasping/DOPE_utils/train2')
-sys.path.append('/home/arg/handover_grasping/DOPE_utils/train2/inference')
+sys.path.append('/home/arg/Deep_Object_Pose/scripts/train2')
+sys.path.append('/home/arg/Deep_Object_Pose/scripts/train2/inference')
 from cuboid import Cuboid3d
 from cuboid_pnp_solver import CuboidPNPSolver
 from detector import ModelData, ObjectDetector
