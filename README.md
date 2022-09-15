@@ -34,6 +34,12 @@ $ nbdev_build_docs
 
 ## Initialize
 
+For first time user
+```
+$ docker pull argnctu/handover_grasping
+```
+
+
 Run docker
 
 ```
