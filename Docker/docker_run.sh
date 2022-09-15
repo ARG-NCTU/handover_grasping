@@ -39,7 +39,6 @@ if [ ! -f $XAUTH ]; then
     exit 1
 fi
 
-
 docker run \
     -it \
     --rm \
@@ -56,6 +55,7 @@ docker run \
     -v "/home/$USER/handover_grasping:/home/arg/handover_grasping" \
     -v "/home/$USER/arg_tools:/home/arg/arg_tools" \
     -w "/home/arg/handover_grasping" \
+    --user "root:root" \
     --name argmm \
     --network host \
     --privileged \
@@ -63,3 +63,4 @@ docker run \
     $DOCKER_OPTS \
     argnctu/handover_grasping \
     $BASH_OPTION
+
