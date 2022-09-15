@@ -12,40 +12,38 @@ cd $cwd/data
 
 # HANet training datasets
 echo "Download HANet training datasets"
-echo "111111" | sudo -S gdown --id 1tBPq3BVQ7Pw5aGd2RkcazpSfcmXufsFG
+gdown --id 1tBPq3BVQ7Pw5aGd2RkcazpSfcmXufsFG
 unzip -qq HANet_training_datasets.zip
 rm -f HANet_training_datasets.zip
 
-# HANet testing datasets
-echo "Download HANet testing datasets"
-echo "111111" | sudo -S gdown --id 1YBSPzS4RS7ml5OGjDbKQA8TP3b_OmIlP
-unzip -qq HANet_testing.zip
-rm -f HANet_testing.zip
+# HA-Rotated
+echo "Download HA-Rotated"
+gdown --id 1Ja7-ZAVERoC-A0aEKCno9x351EqxG7r7
+unzip -qq HA-Rotated.zip
+rm -f HA-Rotated.zip
 
-# HANet Easy testing datasets
-echo "Download HANet Easy testing datasets"
-echo "111111" | sudo -S gdown --id 1_ACfjnxUafW3v2oYk3NqSbKWTDPMJT4k
-unzip -qq HANet_easy_datasets.zip
-rm -f HANet_easy_datasets.zip
+# HA-Upright
+echo "Download HA-Upright"
+gdown --id 1rJGt6uLbXa1dDKmmYMkLtpuWOk8QgJdp
+unzip -qq HA-Upright.zip
+rm -f HA-Upright.zip
 
-# DOPE testing datasets
-echo "Download  DOPE testing datasets"
-echo "111111" | sudo -S gdown --id 1qA4yZcSXaHxOS_rIWArdiNgWrb8zp8CP
-unzip -qq Dope_testing.zip
-rm -f Dope_testing.zip
+# YCB-Obj
+echo "Download  YCB-Obj"
+gdown --id 1Pw-6PUnQqsStOQRZ6PWOP19DeivOpo30
+unzip -qq YCB-Obj.zip
+rm -f YCB-Obj.zip
 
-# multi_view sample data
+# # multi_view sample data
 echo "Download multi_view sample data"
-echo "111111" | sudo -S gdown --id 1P4w8N1KAgrAMKU1LY0_jFuTPZ7pIX6jn
+gdown --id 1P4w8N1KAgrAMKU1LY0_jFuTPZ7pIX6jn
 unzip -qq multi_view.zip
 rm -f multi_view.zip
 
-# parallel-jaw-grasping-dataset
-echo "Download parallel-jaw-grasping-datase"
-echo "111111" | sudo -S gdown --id 18UlspjFeJzrL7aKiBa0Bh2qHW3WdfHrK
-
-unzip -qq parallel-jaw-grasping-dataset.zip
-rm -f parallel-jaw-grasping-dataset.zip
-mv data parallel-jaw-grasping-dataset
+# ARC-Cluttered
+echo "Download ARC-Cluttered"
+gdown --id 16BPFZIsN5i_42KXV6avQEyenAN9Y_xwV
+unzip -qq ARC-Cluttered.zip
+rm -f ARC-Cluttered.zip
 
 cd ..
