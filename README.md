@@ -9,9 +9,6 @@ This file will become your README and also the index of your documentation.
 Jupyter Notebook Environment was setup in Anaconda.
 The Anaconda's default nbdev version is 0.2.40
 Make sure that you have the latest nbdev install
-```
-$ pip3 install -U nbdev
-```
 
 Also be careful about the settings.ini.
 * name of repo: no dashes. Use underscore, such as handover_grasping.
