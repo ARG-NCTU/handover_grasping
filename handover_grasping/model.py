@@ -46,6 +46,7 @@ class HANet(nn.Module):
             feat_3 = self.conv3(feat_2)
             return nn.Upsample(scale_factor=2, mode="bilinear")(feat_3)
 
+
     def __init__(self, pretrained=False, n_class=4):
         super(HANet, self).__init__()
         if pretrained == True:
@@ -106,7 +107,7 @@ class HANet(nn.Module):
         gray = cv2.cvtColor(affordanceMap, cv2.COLOR_RGB2GRAY)
         blurred = cv2.GaussianBlur(gray, (11, 11), 0)
         binaryIMG = cv2.Canny(blurred, 20, 160)
-        _, contours, _ = cv2.findContours(binaryIMG, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(binaryIMG, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
         i = 0
         point_x = 0
@@ -171,7 +172,7 @@ class HANet_depth(nn.Module):
         if pretrained == True:
             self.net = self.FCN_model(n_classes=4)
             model_path = get_model(True)
-            self.net.load_state_dict(torch.load(model_path))
+            self.load_state_dict(torch.load(model_path))
             print('Load pretrained complete')
         else:
             self.net = self.FCN_model(n_classes=n_class)
