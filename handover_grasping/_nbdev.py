@@ -2,17 +2,12 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"handover_grasping_dataset": "00_Datavisualizer.ipynb",
-         "rosenberger_dataloader": "00_Datavisualizer.ipynb",
-         "parallel_jaw_based_grasping_dataset": "00_Datavisualizer.ipynb",
-         "Card": "00_core.ipynb",
+index = {"Card": "00_core.ipynb",
+         "handover_grasping_dataset": "00_datavisualizer.ipynb",
+         "rosenberger_dataloader": "00_datavisualizer.ipynb",
+         "parallel_jaw_based_grasping_dataset": "00_datavisualizer.ipynb",
          "HANet": "01_grasping_estimation.ipynb",
          "HANet_depth": "01_grasping_estimation.ipynb",
-         "GGCNN": "01_grasping_estimation.ipynb",
-         "ConvNet": "01_grasping_estimation.ipynb",
-         "DopeNetwork": "01_grasping_estimation.ipynb",
-         "Draw": "01_grasping_estimation.ipynb",
-         "DopeNode": "01_grasping_estimation.ipynb",
          "Image_table": "02_utils.ipynb",
          "get_grasp_line": "02_utils.ipynb",
          "get_affordancemap": "02_utils.ipynb",
@@ -21,6 +16,10 @@ index = {"handover_grasping_dataset": "00_Datavisualizer.ipynb",
          "get_pcd_left": "02_utils.ipynb",
          "get_view": "02_utils.ipynb",
          "vis": "02_utils.ipynb",
+         "get_line_len": "02_utils.ipynb",
+         "width_detect": "02_utils.ipynb",
+         "get_angle": "02_utils.ipynb",
+         "label_zeng2HA": "02_utils.ipynb",
          "bwareaopen": "03_getheightmap.ipynb",
          "bg_subtraction": "03_getheightmap.ipynb",
          "project_depth2camera": "03_getheightmap.ipynb",
@@ -32,13 +31,16 @@ index = {"handover_grasping_dataset": "00_Datavisualizer.ipynb",
          "getMissingdepthheightmap": "03_getheightmap.ipynb",
          "denoiseheightmap": "03_getheightmap.ipynb",
          "grid_x": "03_getheightmap.ipynb",
-         "grid_y": "03_getheightmap.ipynb"}
+         "grid_y": "03_getheightmap.ipynb",
+         "GGCNN": "07_other_algorithm.ipynb",
+         "ConvNet": "07_other_algorithm.ipynb"}
 
-modules = ["Datavisualizer.py",
-           "core.py",
+modules = ["core.py",
+           "datavisualizer.py",
            "model.py",
            "utils.py",
-           "getheightmap.py"]
+           "getheightmap.py",
+           "other_model.py"]
 
 doc_url = "https://ARG-NCTU.github.io/handover_grasping/"
 
